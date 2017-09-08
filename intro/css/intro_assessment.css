@@ -1,0 +1,124 @@
+.carousel{
+			width: 980px;
+			height: 350px;
+			margin: 30px auto;
+			border: 1px solid #ccc;
+			position: relative;
+			overflow: hidden;
+		}
+		.carousel ul{
+			list-style: none;
+			width: 8000px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			text-align: center;
+			
+		}
+		.carousel ul li{
+			float: left;
+			width: 980px;
+			line-height: 350px;
+			cursor: pointer;
+			
+			color: white;
+			font-size: 20px;
+			
+			
+		}
+		.carousel ul li:nth-child(1){
+			
+			background: blueviolet;
+			
+		}
+		.carousel ul li:nth-child(2){
+			
+			background: lightslategray;
+			
+		}
+		.carousel ul li:nth-child(3){
+			
+			background: deepskyblue;
+			
+		}
+		.carousel ul li:nth-child(4){
+			
+			background: burlywood;
+			
+		}
+		.carousel ul li:nth-child(5){
+			
+			background: blanchedalmond;
+			
+		}
+		.carousel ul li:nth-child(6){
+			
+			background: palegreen;
+			
+		}
+		.btns{
+			
+			display: none;
+			transition: .5s ease-in-out;
+			
+			
+		}
+		.carousel:hover .btns{
+			
+			display: block;
+			
+			
+		}
+		.carousel .btns a:hover{
+			
+			opacity: 0.5;
+			
+		}
+		.carousel .btns a{
+			position: absolute;
+			width: 40px;
+			height: 60px;
+			background-color: orange;
+			top: 50%;
+			margin-top: -30px;
+			color: white;
+			font-size: 20px;
+			text-align: center;
+			line-height: 60px;
+			
+		}
+		.carousel .btns a.leftBtn{
+			left: 10px;
+			
+		}
+		.carousel .btns a.rightBtn{
+			right: 10px;
+		}
+		.carousel ol{
+			position: absolute;
+			bottom: 20px;
+			right: 0;
+			width: 200px;
+			list-style: none;
+		}
+		.carousel ol li{
+			float: left;
+			width: 16px;
+			height: 16px;
+			background-color: #ccc;
+			margin-right: 10px;
+			border-radius: 50%;
+			cursor: pointer;
+			
+		}
+		.carousel ol li:hover{
+			
+			opacity: 0.5;
+			
+			
+		}
+		.carousel ol li.cur{
+			
+			background-color: orange;
+			
+		}

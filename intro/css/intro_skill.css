@@ -1,0 +1,52 @@
+.intro_skill {
+	
+	min-height:400px;
+	
+	width: 75%;
+	
+	margin: 50px 145px;
+	
+	/*border: 1px solid skyblue;*/
+}
+
+.intro_skill ul{
+	
+	margin-left: 50px;
+	
+	margin-top: -10px;
+	
+	font-family: '宋体';
+
+	font-size: 18px;
+	
+	padding: 20px 0;
+	
+	/*color: rgb(90,90,90);*/
+	
+	
+}
+.intro_skill ul li{
+	
+	margin-top: 10px;
+	
+}
+.intro_skill ul li::before{
+	
+	content: '';
+	
+	display: inline-block;
+	
+	width: 10px;
+	
+	height: 10px;
+
+	border: 1px solid gray;
+	
+	border-radius: 50%;
+	
+	margin-right: 8px;
+	
+	margin-top: -8px;
+	
+	
+}
