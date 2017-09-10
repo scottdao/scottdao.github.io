@@ -1,81 +1,76 @@
-$ul = $("#carousel ul");
-		//得到li
-		$lis = $("#carousel ul li");
-		//得到小圆点
-		$circleslis = $("#carousel ol li");
+(function(){
+	
+	var $width = $('.intro_assessment').width()+13.5;
+	console.log($width);
+//	console.log($('.intro_assessment>ul>li').height());
+	var now = 0;
+	$('.circles>li').eq(0).addClass('cur');
+	$('.circles>li').click(function(){
+		
+		$(this).addClass('cur').siblings().removeClass('cur');
+		var index = $(this).index();
 
-		//克隆第一张li，追加到ul里
-     	$lis.eq(0).clone().appendTo($ul);
-
-			// console.log(n);
-		//信号量
-		var idx = 0;
-
-		//自动轮播
-		var timer = setInterval(rightBtnHandler,2000);
-
-		//鼠标进入停止定时器
-		$("#carousel").mouseenter(function(){
-			clearInterval(timer);
-		});
-
-		//鼠标离开的时候，打开定时器
-		$("#carousel").mouseleave(function(){
-			timer = setInterval(rightBtnHandler,2000);
-		});
-
-
-		//右边按钮
-		$("#rightBtn").click(rightBtnHandler);
-		//右边按钮的事件处理程序，用来加定时器
-		function rightBtnHandler(){
-			//防止流氓
-			if($ul.is(":animated")){
-				return;
-			}
-			//先拉动后检测
-			idx++;
-
-			//改变小圆点的cur，由于idx可能瞬间为6，所以设置一个临时的小i，让这个小i是0~5：
-			var i = idx > $lis.length - 1 ? 0 : idx;
-			$circleslis.eq(i).addClass("cur").siblings().removeClass("cur");
+		//进行动画处理；点击当前的图片进行向左移动
+		if(index>now){
+			//上一次图片消失
+			$('.intro_assessment>ul>li').eq(now).stop(true).animate({'left':-$width});
 			
-			$ul.animate({"left":-980 * idx},600,function(){
-				if(idx > $lis.length - 1){
-					idx = 0;
-					$ul.css("left",0);
-				}
-			});
+			//下一张图片出现						    
+			now=index;
+			$('.intro_assessment>ul>li').css('left',$width).eq(now).stop(true).animate({'left':0});
 		}
-
-		//左边按钮
-		$("#leftBtn").click(function(){
-			//防止流氓
-			if($ul.is(":animated")){
-				return;
-			}
-
-			idx--;
-			//先瞬移，然后拉动
-			if(idx < 0){
-				idx = $lis.length - 1;
-				//立刻瞬移
-				$ul.css("left",-980 * $lis.length);
-			}
-
-			$ul.animate({"left":-980 * idx},600);
-
-		});
-
-
-		//小圆点被点击的时候，做的事情
-		$circleslis.click(function(){
-			//点击第几个小圆点，信号量就应该是几
-			idx = $(this).index();
-
-			//拉动
-			$ul.animate({"left":-980 * idx} , 600);
-
-			//小圆点的cur进行交换
-			$(this).addClass("cur").siblings().removeClass("cur");
-		});
+		else if(index<now){
+			
+		 $('.intro_assessment>ul>li').eq(now).stop(true).animate({'left':$width});
+		 
+			//前面一张动画消失；
+		now = index;
+		$('.intro_assessment>ul>li').css('left',-$width).eq(now).stop(true).animate({'left':0});
+			
+		}
+		
+		
+	})
+	
+	//点击右键按钮；产生火车轮播图；
+	function rightBtn(){
+		
+		$('.intro_assessment>ul>li').eq(now).stop(true).animate({'left':-$width});
+		now++;
+		$('.intro_assessment>ul>li').css('left',$width).eq(now).stop(true).animate({'left':0});
+		$('.circles>li').removeClass('cur').eq(now).addClass('cur');
+		if(now>$('.intro_assessment>ul>li').length-1){
+			now = 0;
+			$('.circles>li').removeClass('cur').eq(now).addClass('cur');
+			$('.intro_assessment>ul>li').eq(now).stop(true).animate({'left':0});
+		}
+	}
+	$('.rightBtn').click(rightBtn);
+	
+	var timer = setInterval(rightBtn,3000);
+	
+	$('.intro_assessment').mouseenter(function(){
+		clearInterval(timer);
+	}).mouseleave(function(){
+		
+		timer = setInterval(rightBtn,3000);
+		
+	})
+	
+	//左键功能；
+	$('.leftBtn').click(function(){
+		
+		$('.intro_assessment>ul>li').eq(now).stop(true).animate({'left':$width});
+		$('.circles>li').removeClass('cur').eq(now).addClass('cur');
+		now--;
+		if(now<0){
+			
+			now = $('.intro_assessment>ul>li').length-1;
+			
+		}
+		$('.intro_assessment>ul>li').css('left',-$width).eq(now).stop(true).animate({'left':0});
+		
+			
+	})
+	
+})();

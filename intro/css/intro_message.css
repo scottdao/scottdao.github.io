@@ -71,6 +71,7 @@
 	letter-spacing: 2px;
 	
 	font-size: 18px;
+	transition: 1s ease-in;
 	
 }
 .intro_message>h2::before{
@@ -105,5 +106,20 @@
 	
 	background-position: -7px -10px;
 	
+	
+}
+.intro_message>ul>li:nth-child(6):hover{
+	color: orange;
+	font-size:25px;
+	cursor: pointer;
+	/*position: absolute;*/
+	
+}
+.intro_message>ul>li:nth-child(7):hover{
+	
+	color: orange;
+	font-size: 25px;
+	cursor: pointer;
+	transition: .5 ease-in;
 	
 }

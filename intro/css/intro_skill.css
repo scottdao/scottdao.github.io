@@ -28,7 +28,15 @@
 .intro_skill ul li{
 	
 	margin-top: 10px;
+	transition: .5s ease-in;
 	
+}
+.intro_skill ul li:hover{
+	
+	color: orange;
+	font-size: 25px;
+	font-weight: 600;
+	cursor: pointer;
 }
 .intro_skill ul li::before{
 	

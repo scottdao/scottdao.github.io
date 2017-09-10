@@ -9,7 +9,7 @@
 	var project = data.project;
 	
 	var tit = data_title.title;
-	document.title = '刘道云个人简历|'+tit[0]+'||';
+	document.title = '刘道云个人简历|'+tit[0]+'----';
 	 function dong(){
         var title = document.title;
         var charArr = title.split('');
@@ -97,7 +97,7 @@
 	  	}
 	  	
 	  	//通过点击改变title的名字；
-	  	document.title = '刘道云个人简历|'+tit[index]+'||';
+	  	document.title = '刘道云个人简历|'+tit[index]+'----';
 	  	//让标题动起来；
 	  		
 	})
@@ -221,6 +221,7 @@
 		$(this).parent().parent().fadeOut(1000);
 		
 	})
-	
-	
+	var infoTime = new Date().toLocaleString().split(' ')[0].replace(/\//g,'-');
+	console.log(infoTime);
+	$('.info_time').append(infoTime);
 })();
