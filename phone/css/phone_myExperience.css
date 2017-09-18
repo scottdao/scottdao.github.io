@@ -1,0 +1,67 @@
+.intro_project {
+  min-height: 6.25rem;
+  width: 80%;
+  margin: 0.78125rem auto;
+  border-top: 0.015625rem solid transparent;
+}
+.intro_project:hover {
+  border: 0.015625rem solid #87ceeb;
+}
+.intro_project > ul {
+  margin-left: 0.46875rem;
+  padding: 0.15625rem 0.15625rem 0.15625rem 0;
+}
+.intro_project > ul > li {
+  margin-top: 0.78125rem;
+  font-family: "宋体";
+  font-size: 0.28125rem;
+}
+.intro_project > ul > li > span {
+  font-weight: 600;
+}
+.intro_project > ul > li > span:nth-child(2) {
+  margin-left: 0.3125rem;
+}
+.project_content .software,
+.hardware,
+.tool,
+.description,
+.brief {
+  margin-top: 0.15625rem;
+}
+.project_content .software > span:nth-child(1),
+.hardware > span:nth-child(1),
+.tool > span:nth-child(1),
+.description > span:nth-child(1),
+.brief > span:nth-child(1) {
+  font-weight: 600;
+}
+.description > p {
+  margin-top: 0.15625rem;
+  line-height: 0.390625rem;
+}
+.brief > ul {
+  margin-top: 0.15625rem;
+}
+.brief > ul > li {
+  margin-top: 0.15625rem;
+}
+.intro_job_nav {
+  display: none;
+  height: 0.78125rem;
+  font-size: 0.28125rem;
+  width: 12.65625rem;
+  position: fixed;
+  border: 0.015625rem solid #c8c8c8;
+  line-height: 0.78125rem;
+  color: orange;
+  background: white;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.intro_job_nav:nth-child(2) {
+  font-weight: 600;
+}
