@@ -122,44 +122,44 @@
 	
 	
 
-	var eduction ='学习时间:2012/09 - 2016/07,专业:电子信息工程,学校:龙岩学院,学历:本科(统招)';
+// 	var eduction ='学习时间:2012/09 - 2016/07,专业:电子信息工程,学校:龙岩学院,学历:本科(统招)';
 	
-	var eduction_arr = eduction.split(',');
+// 	var eduction_arr = eduction.split(',');
 	
 	
-	//用函数封装创建元素；
-	function docum(ele){
+// 	//用函数封装创建元素；
+// 	function docum(ele){
 		
-		return document.createElement(ele);
+// 		return document.createElement(ele);
 		
-	}
-	function appen(parent,ele){
+// 	}
+// 	function appen(parent,ele){
 		
-		return parent.appendChild(ele);
+// 		return parent.appendChild(ele);
 		
-	}
-	function selec(sele){
+// 	}
+// 	function selec(sele){
 		
-		return document.querySelector(sele)
+// 		return document.querySelector(sele)
 		
-	}
+// 	}
 	
-	 var con = 0;
-	 var ul = docum('ul');
-	 appen(selec('.intro_education'),ul); 
-     function addEdu(){
-	  	var li = docum('li')
-	    appen(ul,li);
-	    li.innerText=eduction_arr[con];
+// 	 var con = 0;
+// 	 var ul = docum('ul');
+// 	 appen(selec('.intro_education'),ul); 
+//      function addEdu(){
+// 	  	var li = docum('li')
+// 	    appen(ul,li);
+// 	    li.innerText=eduction_arr[con];
 	    
-	  	con++;
+// 	  	con++;
 	  	
-	  	if(con==eduction_arr.length){
-	  			con=0;	
-	  			clearInterval(timer);
-	  	}
-	  }
-	 var timer =  setInterval(function(){addEdu()},3000)
+// 	  	if(con==eduction_arr.length){
+// 	  			con=0;	
+// 	  			clearInterval(timer);
+// 	  	}
+// 	  }
+// 	 var timer =  setInterval(function(){addEdu()},3000)
 	
 	//通过本地服务器发送ajax请求json数据
 //	$.ajax({
