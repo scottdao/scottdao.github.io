@@ -68,18 +68,7 @@
 		var perSingal = document.getElementById('petSingal');
 		perSingal.style.height = height+'px';
 
-		var app =  navigator.platform;
-		console.log(app);
-		var system ={
-
-			win : false,
-
-			mac : false,
-
-			xll : false
-
-		};
-
+		
 	//检测平台
 
 	var p = navigator.platform;
@@ -94,11 +83,11 @@
 
 	if(system.win||system.mac||system.xll){
 
-	 
+	 console.log('我走了移动端')!
 
 	}else{
 
-	   window.location.href="./petphone/petImg.html";
+	   window.location.hash="./petphone/petImg.html";
 
 	}
 
