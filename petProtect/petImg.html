@@ -67,6 +67,42 @@
 	    var height = document.documentElement.clientHeight;
 		var perSingal = document.getElementById('petSingal');
 		perSingal.style.height = height+'px';
-	</script>
+
+		var app =  navigator.platform;
+		console.log(app);
+		var system ={
+
+			win : false,
+
+			mac : false,
+
+			xll : false
+
+		};
+
+	//检测平台
+
+	var p = navigator.platform;
+
+	system.win = p.indexOf("Win") == 0;
+
+	system.mac = p.indexOf("Mac") == 0;
+
+	system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+
+	//跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+
+	if(system.win||system.mac||system.xll){
+
+	 
+
+	}else{
+
+	   window.location.href="./petphone/petImg.html";
+
+	}
+
+
+</script>
 </body>
 </html>
