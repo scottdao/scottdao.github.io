@@ -64,9 +64,7 @@
 		</div>
 	</div>
 	<script>
-	    var height = document.documentElement.clientHeight;
-		var perSingal = document.getElementById('petSingal');
-		perSingal.style.height = height+'px';
+	    
 
 		var app =  navigator.platform;
 		//console.log(app);
@@ -95,6 +93,9 @@
 	if(system.win||system.mac||system.xll){
 
 	 console.log('我走了pc端');
+	    var height = document.documentElement.clientHeight;
+		var perSingal = document.getElementById('petSingal');
+		perSingal.style.height = height+'px';
 
 	}else{
 
@@ -139,6 +140,10 @@
 	    //加粗字体；
 	    var petADB = document.getElementById('petADB');
 	    petADB.style.fontSize = '0.35rem';
+
+	    var height = document.documentElement.clientHeight;
+		var perSingal = document.getElementById('petSingal');
+		perSingal.style.height = height+'px';
 	}
 
 
