@@ -68,29 +68,39 @@
 		var perSingal = document.getElementById('petSingal');
 		perSingal.style.height = height+'px';
 
-		//检测平台
+		var app =  navigator.platform;
+		//console.log(app);
+		var system ={
 
-		var p = navigator.platform;
+			win : false,
 
-		system.win = p.indexOf("Win") == 0;
+			mac : false,
 
-		system.mac = p.indexOf("Mac") == 0;
+			xll : false
 
-		system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+		};
 
-		//跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+	//检测平台
 
-		if(system.win||system.mac||system.xll){
+	var p = navigator.platform;
 
-		 console.log('我走了pc端');
+	system.win = p.indexOf("Win") == 0;
 
+	system.mac = p.indexOf("Mac") == 0;
 
-		}else{
+	system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
 
-		   //window.open("./petphone/petImg.html");
-		   alert('我走了移动端');
+	//跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
 
-		}
+	if(system.win||system.mac||system.xll){
+
+	 console.log('我走了pc端');
+
+	}else{
+
+	   //window.location.href="./petphone/petImg.html";
+	   alert('我走了移动端');
+	}
 
 
 </script>
