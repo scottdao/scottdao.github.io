@@ -53,14 +53,14 @@
 </head>
 <body>
 	<div class="petSingal" id="petSingal">
-		<div class="petLove">
+		<div class="petLove" id="petLove">
 			宠爱保业务调整公告
 		</div>
-		<div class="petBig">
+		<div class="petBig" id="petBig">
 			ANNOUNCEMENT
 		</div>
-		<div class="petAD">
-			"宠爱保"宠物保险正在<b>内部调整中</b>，进一步相关内容<b>敬请期待</b>！
+		<div class="petAD" id="petAD">
+			"宠爱保"宠物保险正在<b id="petADB">内部调整中</b>，进一步相关内容<b>敬请期待</b>！
 		</div>
 	</div>
 	<script>
@@ -99,7 +99,46 @@
 	}else{
 
 	   //window.location.href="./petphone/petImg.html";
-	   alert('我走了移动端');
+	   //alert('我走了移动端');
+	    phoneApp();
+		function phoneApp(){
+			var num = window.devicePixelRatio;
+			var bili = 1/num;
+			//创建meta元素；
+			var meta_vp = document.createElement('meta');
+			meta_vp.name = "viewport";
+			meta_vp.content = 'width=device-width, user-scalable=no, initial-scale='+bili+', maximum-scale='+bili+', minimum-scale='+bili+'';
+			document.head.appendChild(meta_vp);
+			var wid = document.documentElement.clientWidth/10;
+			document.documentElement.style.fontSize = wid + 'px';
+			
+		}
+		//宠物公告样式；
+		var petLove = document.getElementById('petLove');
+		petLove.style.fontSize = '0.55rem';
+		petLove.style.top = '18.7%';
+		petLove.style.borderRadius = '0.5rem';
+	    petLove.style.padding = '0.1rem 0.5rem';
+	    petLove.style.left= '21.8%';
+
+	    //英文字体样式；
+	    var petBig = document.getElementById('petBig');
+		petBig.style.fontSize = '0.75rem';
+		petBig.style.top = '28%';
+	    petBig.style.left= '20%';
+
+	    //宠爱保样式；
+	    var petAD = document.getElementById('petAD');
+		petAD.style.fontSize = '0.28rem';
+		petAD.style.top = '37%';
+		petAD.style.height='1.5rem';
+	    petAD.style.width= '85.412%';
+	    petAD.style.lineHeight = '1.5rem';
+	    petAD.style.left= '8%';
+
+	    //加粗字体；
+	    var petADB = document.getElementById('petADB');
+	    petADB.style.fontSize = '0.35rem';
 	}
 
 
