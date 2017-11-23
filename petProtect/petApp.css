@@ -1,4 +1,4 @@
-	*{
+*{
 			margin: 0;
 			padding: 0;
 		}
@@ -11,21 +11,21 @@
 			font-family: "microsoft yahei";
 		}
 		.petLove{
-		    position: absolute;
+			position: absolute;
 		    color: rgb(255,187,26);
-		    font-size: 1rem;
+		    font-size: 0.55rem;
 		    top: 18.7%;
 		    border: 1px solid rgb(255,187,26);
 		    border-radius: 0.5rem;
 		    padding: 0.1rem 0.5rem;
-		    left: 25.8%;
+		    left: 21.8%;
 		}
 		.petBig{
-			font-size: 1.3rem;
+			font-size: 0.75rem;
 		    color: rgb(255,187,26);
 		    position: absolute;
 		    top: 28%;
-		    left: 23%;
+		    left: 20%;
 		    margin: 0 auto;
 		    font-weight: bold;
 		}
