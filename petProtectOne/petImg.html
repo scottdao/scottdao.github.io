@@ -94,24 +94,12 @@
 	//跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
 	if(system.win||system.mac||system.xll){
 		console.log('走了pc端');
-		//alert('我做了pc端')
-		 var url = window.location.href;
-	   //var newUrl =  url.replace(/\/{1}[a-zA-Z]+\.html$/,'/petPhone/petImg.html');
-          var newUrl = window.location.origin+'/petProtectOne/petPhone/petImg.html'
-	  	console.log(url.match(/\/{1}[a-zA-Z]+\.html$/));
-		console.log(newUrl);
-		console.log(window.location);
+		
 	}
 	else{
 	   var url = window.location.href;
-	   //var newUrl =  url.replace(/\/{1}[a-zA-Z]+\.html$/,'/petPhone/petImg.html');
-          // var newUrl =  url.replace(/\/{1}[a-zA-Z]+\.html$/,'/petPhone/petImg.html');petProtectOne/petImg
-		var newUrl = window.location.origin+'/petProtectOne/petPhone/petImg.html'
-	   //window.location.replace(newUrl);
-		//window.open(newUrl);
-		window.location.href = newUrl
-		//alert(newUrl);
-		//alert(url);
+	   var newUrl = window.location.origin+'/petProtectOne/petPhone/petImg.html'
+	    window.location.href = newUrl;
 	}
 }
 	</script>
