@@ -67,7 +67,7 @@
 	    var height = document.documentElement.clientHeight;
 		var perSingal = document.getElementById('petSingal');
 		perSingal.style.height = height+'px';
-
+		window.onload = function(){
 		//移动端走移动路径，pc走pc路径；
 		var app =  navigator.platform;
 		
@@ -103,6 +103,7 @@
 		window.open(newUrl);
 		alert(newUrl);
 	}
+}
 	</script>
 </body>
 </html>
