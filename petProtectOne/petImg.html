@@ -98,7 +98,7 @@
 		 var url = window.location.href;
 	   //var newUrl =  url.replace(/\/{1}[a-zA-Z]+\.html$/,'/petPhone/petImg.html');
            var newUrl =  url.replace(/\/{1}[a-zA-Z]+\.html$/,'/petPhone/petImg.html');
-	  	console.log(url.match(reg)[0]);
+	  	console.log(url.match(/\/{1}[a-zA-Z]+\.html$/)[0]);
 		console.log(newUrl);
 	}
 	else{
