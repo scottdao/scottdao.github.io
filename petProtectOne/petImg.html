@@ -94,12 +94,13 @@
 	//跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
 	if(system.win||system.mac||system.xll){
 		console.log('走了pc端');
+		
 	}
 	else{
 	   var url = window.location.href;
 	   var newUrl =  url.replace(/\/{1}[a-zA-Z]+\.html$/,'/petPhone/petImg.html');
 	   //window.location.replace(newUrl);
-		window.location.reload(newUrl);
+		window.open(newUrl);
 	}
 	</script>
 </body>
