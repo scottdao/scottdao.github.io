@@ -24,7 +24,9 @@
 
 	    //通过navigator加正则判断区别手机端和pc端；
 	   var reg = /([a-zA-Z]+)?([a-zA-Z]+.*\;\s([a-zA-Z0-9]+)?)/
-	   var newNav = navigator.appVersion.match(reg);
+	   var newNav = navigator.userAgent.match(reg);
+	   //console.log(navigator.userAgent);
+	   //console.log(navigator)
 	   if(newNav){
 	   	 var nav = newNav[0];
 	   	 var navArr = nav.split(/(\s)|((\s\d\.\d)?\;)/);
@@ -37,7 +39,7 @@
 	   	 	
 	   	 }
 	   	 if (flag) {
-	   	 	//console.log('我用了手机');
+	   	 	console.log('我用了手机');
 	   	 	 	phoneApp();
 				function phoneApp(){
 					var num = window.devicePixelRatio;
@@ -53,7 +55,7 @@
 				}
 	   	 }
 	   	 else{
-	   	 	//console.log('我用了pc端');
+	   	 	console.log('我用了pc端');
 	   	 	var link = document.getElementsByTagName('link');
 	   	 	link[0].setAttribute('href','./petPc.css');
 	   	 	//console.log(link[0]);
