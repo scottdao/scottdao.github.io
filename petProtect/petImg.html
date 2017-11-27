@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>宠爱保业务调整公告</title>
+	<!-- <link rel="stylesheet" href=""> -->
+	<link rel="stylesheet" href="./petApp.css">
+</head>
+<body>
+	<div class="petSingal" id="petSingal">
+		<div class="petLove" id="petLove">
+			宠爱保业务调整公告
+		</div>
+		<div class="petBig" id="petBig">
+			ANNOUNCEMENT
+		</div>
+		<div class="petAD" id="petAD">
+			"宠爱保"宠物保险正在<b id="petADB">内部调整中</b>，进一步相关内容<b>敬请期待</b>！
+		</div>
+	</div>
+	<script>
+		
+
+
+	    //通过navigator加正则判断区别手机端和pc端；
+	   var reg = /([a-zA-Z]+)?([a-zA-Z]+.*\;\s([a-zA-Z0-9]+)?)/
+	   var newNav = navigator.userAgent.match(reg);
+	   //console.log(navigator.userAgent);
+	   //console.log(navigator)
+	   if(newNav){
+	   	 var nav = newNav[0];
+	   	 var navArr = nav.split(/(\s)|((\s\d\.\d)?\;)/);
+	   	 var flag = false;
+	   	 for(var i = 0,len=navArr.length;i<len;i++){
+	   	 	if (navArr[i]=='Android'||navArr[i]=='iPhone'||navArr[i]=='iPad'||navArr[i]=='MeeGo'||navArr[i]=='NokiaN9'||navArr[i]=='NOKIA') {
+	   	 		flag = true;
+	   	 		break;
+	   	 	}
+	   	 	
+	   	 }
+	   	 if (flag) {
+	   	 	console.log('我用了手机');
+	   	 	 	phoneApp();
+				function phoneApp(){
+					var num = window.devicePixelRatio;
+					var bili = 1/num;
+					//创建meta元素；
+					var meta_vp = document.createElement('meta');
+					meta_vp.name = "viewport";
+					meta_vp.content = 'width=device-width, user-scalable=no, initial-scale='+bili+', maximum-scale='+bili+', minimum-scale='+bili+'';
+					document.head.appendChild(meta_vp);
+					var wid = document.documentElement.clientWidth/10;
+					document.documentElement.style.fontSize = wid + 'px';
+					
+				}
+	   	 }
+	   	 else{
+	   	 	console.log('我用了pc端');
+	   	 	var link = document.getElementsByTagName('link');
+	   	 	link[0].setAttribute('href','./petPc.css');
+	   	 	//console.log(link[0]);
+	   	 }
+	   }
+	   var height = document.documentElement.clientHeight;
+		var perSingal = document.getElementById('petSingal');
+		perSingal.style.height = height+'px';
+	</script>
+	</body>
+	</html>
