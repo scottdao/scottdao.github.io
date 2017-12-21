@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/demo.css"/>
+		<style>
+			.containLi{
+				overflow:hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="box">
+				<ul>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+				</ul>
+			</div>
+		</div>
+		<div class="tanchu">
+			<div class="content">
+				<p>
+					<label for="user">姓名：</label>
+					<input type="text" id="user" placeholder="请输入姓名"/>
+				</p>
+				<p>
+					<label for="age">年龄：</label>
+					<input type="text" id="age" placeholder="请输入年龄"/>
+				</p>
+				<p>
+					<label for="address">地址：</label>
+					<input type="text" id="address" placeholder="请输入地址"/>
+				</p>
+				<div class="move_box">
+					上面的这些事件都会冒泡，也都可以取消。虽然这些触摸事件没有在DOM规范中定义，但是它们却是以兼容DOM的方式实现的。所以，每个触摸事件的event对象都提供了在鼠标实践中常见的属性：bubbles(起泡事件的类型)、cancelable(是否用 preventDefault() 方法可以取消与事件关联的默认动作)、clientX(返回当事件被触发时，鼠标指针的水平坐标)、clientY(返回当事件触发时，鼠标指针的垂直坐标)、screenX(当某个事件被触发时，鼠标指针的水平坐标)和screenY(返回当某个事件被触发时，鼠标指针的垂直坐标)。除了常见的DOM属性，触摸事件还包含下面三个用于跟踪触摸的属性。
+				</div>
+			</div>
+			<div class="img_photo">
+				<img src="img/ic_popup_close@2x.png" alt="" />
+			</div>
+		</div>
+	</body>
+	<script src="jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+		(function() {
+			var sum = window.devicePixelRatio;
+			var bili = 1 / sum;
+			var meta_vp = document.createElement('meta');
+			meta_vp.name = 'viewport';
+			meta_vp.content = 'width=device-width, user-scalable=no, initial-scale=' + bili + ', maximum-scale=' + bili + ', minimum-scale=' + bili + '';
+			document.head.appendChild(meta_vp);
+			var font = document.documentElement.clientWidth / 10;
+			document.documentElement.style.fontSize = font + 'px';
+		})();
+	 </script>
+	 <script type="text/javascript">
+	 	$('.container .box').on("click","li",function(){
+	 		var index =	$(this).index();	 			 		
+	 		$(".tanchu").show();
+	 		$('.container').addClass('containLi');
+	 	})
+	 		 	
+	 	$(".img_photo").click(function(){
+	 		$(".tanchu").hide();
+	 		$('.container').removeClass('containLi');
+	 	})
+	 	$(".tanchu").on("touchmove",function(event){	 		
+	 			
+	 	})
+	 	$(".move_box").on("touchmove",function(event){
+	 		event.stopPropagation();
+	 	})
+	 </script>
+</html>

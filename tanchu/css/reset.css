@@ -1,0 +1,561 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+*{
+	margin:0;
+	padding:0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+
+input,
+textarea {
+	/*去掉文本框的默认轮廓线*/
+	outline: 0 none;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+body {
+	background: #F3F3F3;
+	font-family: "Arial", "Helvetica Neue", "Helvetica", "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei UI", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+	font-size: 14px;
+	color: #333333;
+	width: 100%;
+}
+
+body,
+html {
+	width: 100%;
+	height:100%;
+}
+
+.clearfix:after {
+	height: 0;
+	content: " ";
+	display: block;
+	overflow: hidden;
+	clear: both;
+}
+
+.clearfix {
+	/*IE低版本浏览器不支持after伪类所以要加这一句*/
+	zoom: 1;
+}
+
+/*标题全局样式开始*/
+.allTitle .title {
+	font-size: 24px;
+	color: #111111;
+	line-height: 33px;
+	font-weight: normal;
+	margin: 18px 0 16px 0;
+}
+/*标题全局样式结束*/
+
+
+/*table全局样式开始*/
+.list {
+	width: 100%;
+	height: auto;
+	background: #FFFFFF;
+	min-height: 320px;	
+}
+
+.list .lastd>a,
+.list .lastd>span {
+	color: #11BBFF;
+	padding: 0 5px;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	font-size: 12px;
+	color:#222222;
+	background: #FFFFFF;
+}
+
+th {
+	font-weight: bold;
+}
+
+tr {
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+}
+
+tr:nth-child(odd) {
+	background: #F3F3F3;
+}
+/*table全局样式结束*/
+
+
+/*下拉框的全局样式设置开始*/
+.zhsel {
+	width: 15%;
+	height: 34px;
+	min-width: 140px;
+	line-height: 34px;
+	margin-right: 14px;
+	text-align: center;
+	border-radius: 5px;
+	border: 1px solid #11BBFF;
+	position: relative;
+}
+
+.zhsel .zctype {
+	color:#CCCCCC;
+	font-size: 12px;
+	text-align: center;
+}
+.zhsel>span{
+	color: #CCCCCC;
+}
+
+.zhsel>select {
+	color: #aaaaaa;
+	outline: none;
+	top: 0;
+	left: 0;
+	height: 34px;
+	line-height: 34px;
+	width: 100%;
+	position: absolute;
+	z-index: 10;
+	opacity: 0;
+}
+
+.zhsel>select>.option {
+	position: absolute;
+	top: 34px;
+	left: 0;
+	padding: 10px 0;
+	color:black;
+	text-align: center;
+}
+
+.zhsel .lanjiantou {
+	position: absolute;
+	top: 15px;
+	right: 20px;
+}
+/*下拉框的全局样式设置结束*/
+
+
+/*form表单的全局样式开始*/
+
+.zhlist {
+	width: 100%;
+	background: #FFFFFF;
+	margin-bottom: 20px;
+}
+
+
+/*form表单的全局样式结束*/
+
+
+/*选项卡的样式开始*/
+.tabslist {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.tabslist ul {
+	height: 28px;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.tabslist ul li {
+	line-height: 28px;
+	width:90px;
+	padding: 0 5px;
+	margin: 0 5px;
+	float: left;
+	text-align: center;
+	margin-top: -0.5px;
+}
+
+.tabslist ul li>a {
+	font-weight: 700;
+}
+
+.tabslist-color {
+	color: #11BBFF;
+	font-weight: 700;
+	border-bottom: 2px solid #11BBFF;
+}
+
+.tabs-container {
+	width:100%;
+}
+.tabs-container>div:first-child{
+	display: block;
+}
+.tabs-container>div{
+	width:100%;	
+	background:#FFFFFF;
+	min-height: 380px;
+	border-radius: 10px;
+	display: none;
+}
+.tabs-container>div>.tabs1,
+.tabs-container>div>.tabs2{
+	width:96%;
+	overflow: hidden;
+	background: #FFFFFF;
+	margin: 0 auto;
+	padding:15px 0;
+	position: relative;
+}
+/*选项卡的样式结束*/
+
+/*弹出框的所有外层大盒子的公共样式*/
+.alltcbox{
+	width: 100%;
+	height:100%;
+	top:0;
+	left: 0;
+	z-index: 10000;
+	position: absolute;
+	background: rgba(0, 0, 0, 0.05);
+	display: none;
+}
+/*弹出框的公共样式开始*/
+		
+/*公共的标题开始*/
+.allp-bottom{
+	width:100%;
+	height:28px;
+	line-height:28px;
+	border-bottom:2px solid #11BBFF;
+}
+.allp-bottom>span{
+	padding-left:15px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+/*请确认部分样式开始*/
+.allqueren{
+	width:100%;
+	padding:15px 0;
+	border-top:1px dashed #CCCCCC;
+	position: relative;
+}
+.allqueren>span{
+	position: absolute;
+	top:-10px;
+	left:42%;
+	font-size: 12px;
+	color:#CCCCCC;
+	background: #FFFFFF;
+}
+.allqueren-content{
+	width:60%;
+	margin:0 auto;
+}
+.allquerenbtn,.allcancel,.allqueren-content .czmima{
+	width:20%;			
+	height:30px;
+	border-radius: 5px;
+	box-sizing: border-box;
+	line-height: 30px;
+	text-align: center;
+	background: #FFFFFF;
+	outline: none;
+	border: 1px solid #11BBFF;
+	color:#11BBFF;
+	float: left;
+	font-weight: bold;
+	margin-left:10%;
+}
+.allcancel:hover,
+.allquerenbtn:hover,
+.allqueren-content .czmima:hover{
+	cursor: pointer;
+}
+
+/*请确认部分样式结束*/
+/*公共的标题结束*/
+
+/*弹出框的公共样式结束*/
+
+/*内部的标题公共样式开始（如员工-角色中的新增角色）*/
+.allcontainer-title{
+	width: 100%;
+	margin-bottom: 15px;			
+}
+.allcontainer-title>a{
+	width:10%;
+	color: #11BBFF;
+	float: left;
+	height:26px;
+	line-height: 26px;
+	font-weight: bold;
+	border:1px solid #11BBFF;
+	border-radius: 5px;			
+	text-align: center;
+}
+/*内部的标题公共样式结束（如员工-角色中的新增角色）*/
+
+/*单选框的样式开始*/
+.allradio{
+	line-height: 1;
+	position: relative;
+	display: inline-block;
+	margin: 0 10px 5px 0;
+	
+}	
+.allradio>input[type="checkbox"],		
+.allradio>input[type="radio"]{
+	opacity:0;
+	display: block;
+	position: absolute;
+	left:0;
+	top:0;
+	z-index:999999;
+	margin: 0;
+	width:100%;
+	height:100%;
+	cursor: pointer;
+}
+
+.allradio>label>i{
+	position: absolute;
+	top:0;
+	left:0;
+	width:10px;
+	height:10px;
+	border-radius: 50%;
+	border: 1px solid #11BBFF;
+	text-align: center;
+	display: inline-block;	
+	font-style: normal;			
+}			
+.allradio>label{
+	margin-left:15px;
+	display: block;
+	margin-top:-1px;
+}
+.allradio>input[type="checkbox"]+label>i:after,
+.allradio>input[type="radio"]+label>i:after{
+	background:#FFFFFF;
+	opacity: 0;
+}
+.allradio>input[type="checkbox"]:checked+label>i:after,
+.allradio>input[type="radio"]:checked+label>i:after{
+	content: "";
+	width:6px;
+	height:6px;
+	background:#11BBFF;
+	position: absolute;
+	top:0;
+	left:0;
+	margin:2px;
+	border-radius: 50%;	
+	opacity: 1;
+}
+.lansetext{
+	color:#11BBFF;
+}
+/*单选框的样式结束*/
+
+/*设置input的提示信息字体的颜色开始*/
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder { /* WebKit browsers */  
+   color:#CCCCCC;    
+}
+textarea:-moz-placeholder,  
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */  
+   color:#CCCCCC;     
+} 
+textarea::-moz-placeholder, 
+input::-moz-placeholder { /* Mozilla Firefox 19+ */  
+   color:#CCCCCC;     
+}
+textarea:-ms-input-placeholder,   
+input:-ms-input-placeholder { /* Internet Explorer 10+ */  
+    color:#CCCCCC;      
+} 
+/*设置input的提示信息字体的颜色结束*/
+
+/*设置input的提示信息居中开始 在input上添加一个类名textcenter*/
+input.textcenter::-webkit-input-placeholder { /* WebKit browsers */  
+   color:#CCCCCC; 
+   text-align: center;  
+} 
+input.textcenter:-moz-placeholder { /* Mozilla Firefox 4 to 18 */  
+   color:#CCCCCC;     
+}  
+input.textcenter::-moz-placeholder { /* Mozilla Firefox 19+ */  
+   color:#CCCCCC;     
+}  
+input.textcenter:-ms-input-placeholder { /* Internet Explorer 10+ */  
+    color:#CCCCCC;      
+}
+/*设置input的提示信息居中结束*/
+/*添加红颜色的类名开始*/
+.addredcolor{
+	color:#FD7473;
+}
+/*添加红颜色的类名结束*/
+/*input框的样式开始*/
+.input{					
+	border:1px solid #11BBFF;
+	color:#11BBFF;
+	border-radius: 5px;
+	background: #FFFFFF;
+	box-sizing: border-box;
+	text-align: center;
+	cursor: pointer;
+}
+/*input框的样式结束*/
+
+/*带下拉按钮的输入框开始*/
+.xlsrk{
+	width: 30%;
+	margin-left: 20px;
+}
+.xlsrk .zhinput{
+	float: left;
+	width: 60%;
+}
+.xlsrk .zhsel{
+	float: left;
+	width: 20px;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	border-left: none;
+	min-width: 100px;
+}
+.xlsrk .zhsel .lanjiantou{
+	right: 16px;
+}
+.xlsrk .zhsel .mingcheng{
+	color: #11BBFF;
+}
+
+/*带下拉按钮的输入框结束*/
+.kongge{
+	padding:0 12px;
+}
+
+
