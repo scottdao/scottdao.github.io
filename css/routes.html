@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		.box{
+			width: 300px;
+			height: 300px;
+			margin: 50px auto;
+			position: relative;
+			border: 2px solid #ccc;
+			font: 40px/300px "微软雅黑";
+			text-align: center;
+		}
+		.box>p{
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			border-radius: 50%;
+			transition: 2s;
+		}
+		.p1,.p3{
+			background: salmon;
+			transform: rotateY(180deg);
+			/*opacity: 0;*/
+			z-index: 0;
+		}
+		.p2,.p4{
+			background: sandybrown;
+			transform: rotateY(0deg);
+			/*opacity: 1;*/
+			z-index: 1;
+		}
+		.add1{
+			transform: rotateY(0deg);
+			/*opacity: 1;*/
+			z-index: 1;
+		}
+		.add2{
+			transform: rotateY(180deg);
+			/*opacity: 0;*/
+			z-index: 0;
+		}
+	</style>
+	<body>
+		<div class="box">			
+			<p class="p1">反面</p>
+			<p class="p2">正面</p>
+		</div>
+		<div class="btn">
+			dianj
+		</div>
+
+		<div class="box">			
+			<p class="p3">反面</p>
+			<p class="p4">正面</p>
+		</div>
+		
+	</body>
+	<script src="jquery-1.7.2.min.js"></script>
+	<script>
+		var flag = true;
+		$(".btn").click(function(){
+			
+			if (flag) {
+
+				$('.p1').addClass('add1');
+				$('.p2').addClass('add2');
+				flag = false;
+			}else{
+				//debugger
+				$('.p1').removeClass('add1');
+				$('.p2').removeClass('add2');
+				flag = true;
+			}
+		})
+		
+	</script>
+</html>
