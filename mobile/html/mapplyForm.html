@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" id="viewport" />
+		<title>定点医院申请表单</title>
+		<link rel="stylesheet" href="../css/reset.css" />
+		<link rel="stylesheet" href="../css/mapplyForm.css" />
+		<script src="../js/jquery-2.1.4.min.js"></script>
+		<script src="../js/adapt.js"></script>
+		<script src="../js/zepto.js"></script>
+		<script src="../js/touch.js"></script>
+		<script src="../js/event.js"></script>
+		<script src="../js/baidutongji.js"></script>
+	</head>
+
+	<body>
+		<div class="page">
+			<header>
+				<div class="progress">
+					<h1>妥拉金融</h1>
+					<span>ACTION</span>
+				</div>
+			</header>
+			<section>
+				<form id="TuoLa_Form" action="#" method="post">
+
+					<div class="tuola-form">
+						<div class="tuola-inputs">
+							<label for="hospitalName">医院名称</label>
+							<input id="hospitalName" name="name" type="text" maxlength="50" placeholder="请输入1-50个汉字" class="tuola-input spa">
+						</div>
+
+						<div class="tuola-inputs">
+							<label for="hpLocation">所在城市</label>
+							<input id="hpLocation" name="location" type="text" maxlength="20" placeholder="请输入1-20个汉字" class="tuola-input spa">
+
+						</div>
+						<div class="tuola-inputs">
+							<label for="applyName">申&nbsp;请&nbsp;人</label>
+							<input id="applyName" name="contact_name" type="text" maxlength="50" placeholder="&nbsp;不允许输入空格" class="tuola-input spa">
+
+						</div>
+						<div class="tuola-inputs">
+							<label for="phoneNum">手机号码</label>
+							<input id="phoneNum" name="contact_tel" type="text" maxlength="20" placeholder="请输入11位手机号" class="tuola-input spa">
+
+						</div>
+						<div class="tuola-inputs">
+							<label for="email">邮&#12288;&#12288;箱</label>
+							<input id="email" name="contact_email" type="text" maxlength="50" placeholder="请输入申请人邮箱" class="tuola-input spa">
+
+						</div>
+						<div class="btngroup">
+							<div class="tuola-button tuola-submit tuola-left ">申请</div>
+							<input type="reset" class="tuola-button tuola-cancle tuola-right" value="取消" onclick="javascript:history.back(-1)">
+						</div>
+
+					</div>
+				</form>
+				
+			</section>
+			<div class="pop-shade" id="popShade">
+					
+			</div>
+			<div class="popUp" id="popUp">
+				<div class="popUp-delete">
+					<span id="closeBtn">X</span>
+				</div>
+				<div class="right-icon">
+				</div>
+				<div class="pWord">
+					<p>感谢您的申请，产品顾问将尽快联络您</p>
+					<p>请保持手机通畅，谢谢。</p>
+				</div>
+				<div class="popAffirm" id="affirmBtn">确认</div>
+				<div class="popQR-footer">
+					<div class="popQR"></div>
+					<div class="popQR-word">
+						长按二维码，了解更多妥拉产品
+					</div>
+				</div>
+			</div>
+			<div class="modal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="close">x</div>
+						<div class="right-bg"></div>
+						<div class="message">感谢您的申请，妥拉融资顾问将在24小时之内联系您请保持手机畅通，谢谢</div>
+						<a class="confirm" href="index.html">确认
+						</a>
+						<div class="content-bot-box">
+							<div class="code">
+								<img src="../img/code.png" alt="Tuola" />
+								<p>扫码关注，了解更多妥拉产品</p>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script>
+		$(".close").on("tap",function(){
+			$(".modal").hide();
+		})
+		
+		
+	</script>
+	<script src="../js/hospital.js"></script>
+
+</html>

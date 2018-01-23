@@ -1,0 +1,282 @@
+* {
+	box-sizing: border-box;
+	/* 在X5新内核Blink中，在排版页面的时候，会主动对字体进行放大，会检测页面中的主字体，当某一块字体在我们的判定规则中，认为字号较小，并且是页面中的主要字体，就会采取主动放大的操作。然而这不是我们想要的，可以采取给最大高度解决 */
+	max-height: 100000px;
+}
+
+*:before,
+*:after {
+	box-sizing: border-box;
+	max-height: 100000px;
+}
+
+*,
+*:before,
+*:after {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+textarea,
+td {
+	border: 0 none;
+	font-size: inherit;
+	color: inherit;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+}
+
+em,
+strong {
+	font-style: normal;
+}
+
+ul,
+ol,
+li {
+	list-style: none;
+}
+
+body {
+	font-family: "MicroSoft Yahei";
+	color: #333;
+	background-color: #fff;
+	font-size: 0.24rem;
+}
+
+a {
+	text-decoration: none;
+}
+
+.box {
+	position: relative;
+	max-width: 10rem;
+	margin: 0 auto;
+}
+
+.img-responsive {
+	width: 100%;
+}
+
+.section-two {
+	position: relative;
+	background: #f7fafc;
+}
+
+.section-three .applyNow a {
+	display: block;
+	width: 60%;
+	height: 2rem;
+	margin: 0 auto;
+	background: url(../img/applyNow.png) no-repeat;
+	background-size: 100%;
+}
+
+.section-three {
+	position: relative;
+}
+
+
+/*.section-two .applyNow {
+	position: absolute;
+	width: 50%;
+	bottom: 0.8rem;
+	left: 25%;
+	/*display:none;*/
+
+
+}
+*/ .section-two a {
+	display: block;
+}
+input {
+	width: 50%;
+	background: transparent;
+	
+	border: none;
+	height: 0.8rem;
+	border-radius: 0.8rem;
+	text-align: center;
+	margin: 0 auto;
+	position: absolute;
+	bottom: 0.8rem;
+	left: 25%;
+	border: none;
+	outline: none;
+}
+.section-three a {
+	display: block;
+	width: 50%;
+	margin: 0 auto;
+	position: absolute;
+	bottom: -0.4rem;
+	left: 12%;
+}
+.section-three input {
+	width: 100%;
+}
+.section-six {
+	position: relative;
+	/*宠物图片*/
+	height: 26.9rem;
+}
+.section-six a {
+	position: absolute;
+    height: 1.65rem;
+    width: 6.2rem;
+    z-index: 1000;
+    bottom: 3.5rem;
+    left: 2rem;
+}
+.footer .applyNow {
+	bottom: 2rem;
+	height:1.3rem;
+}
+
+@media only screen and (max-device-width:420px) {
+	input.applyNow {
+		bottom: 1rem;
+		height: 1.2rem;
+	}
+
+}
+@media only screen and (max-device-width:768px) {
+	input.applyNow {
+		bottom: 1rem;
+		height: 1.2rem;
+	}
+	
+	
+.footer {
+	position: relative;
+}
+.box .footer .contain-code{
+	position: absolute;
+	bottom:38%;
+	left:30%;
+	width:40%;
+	margin:0 auto;
+	transform: scale(0.9);
+	-webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+}
+
+}
+/*宠物定保样式*/
+ .header {
+    height: 5.625rem;
+ }
+ .section-one{
+    height: 4.4835rem;
+ }
+ .section-two {
+   height: 4.541rem;
+}
+.section-three{
+	height: 4.5959rem;
+}
+.section-four{
+	height: 2.635rem;
+	position: relative;
+}
+.section-four a{
+	position: absolute;
+	z-index: 1000;
+	height: 1.65rem;
+    width: 6rem;
+    top: 1.2rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.section-ev{
+	height: 14.51rem;
+}
+.section-eight a{
+	position: absolute;
+	z-index: 1000;
+	height: 1.65rem;
+    width: 6rem;
+    top: 0.5rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    }
+.section-eight{
+	height: 4.8rem;
+	position: relative;
+}
+.section-QR{
+	height: 4.86rem;
+	position: relative;
+}
+.QR-pic{
+	position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 2.60rem;
+}

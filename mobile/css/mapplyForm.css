@@ -1,0 +1,312 @@
+html {
+	font-size: 100px;
+}
+
+* {
+	-webkit-box-sizing: border-box;
+	/*兼容*/
+}
+
+input[type="text"],
+input[type="button"],
+input[type="reset"] {
+	-webkit-appearance: none;
+	border-radius: 0;
+	font-family: 'microsoft yahei', '黑体', Arial, Helvetica, sans-serif;
+}
+
+body {
+	background: #EEEEEE;
+	font-size: 14px;
+	font-family: "MicroSoft Yahei";
+	/*height: 5000px;*/
+}
+
+.page {
+	width: 100%;
+	max-width: 750px;
+	margin: 0 auto;
+	background: #fff;
+	/*height: 124444px*/
+}
+
+header {
+	background: rgb(251,216,64);
+	color: rgb(58,60,59);
+	height: 3.86rem;
+	padding-top: 0.6rem;
+}
+
+header .progress {
+	width: 95%;
+	background: url("../img/progress2.png") no-repeat center;
+	background-size: 100%;
+	height: 3.86rem;
+	margin: 0 auto;
+	position: relative;
+}
+
+header h1 {
+	font-size: 0.417rem;
+	text-align: center;
+	padding-right: 0.5rem;
+}
+
+header span {
+	text-align: center;
+	font-size: 0.25rem;
+	display: block;
+	padding-top: 0.02rem;
+	padding-right: 0.5rem;
+}
+
+
+
+
+section {
+	width: 95%;
+	margin: 0 auto;
+	padding-top: 1rem;
+}
+
+#TuoLa_Form input {
+	border: none;
+}
+
+#TuoLa_Form {
+	padding-bottom: 1rem;
+}
+
+.tuola-form .tuola-inputs {
+	width: 95%;
+	height: 0.82rem;
+	line-height: 0.82rem;
+	border: 1px solid #ccc;
+	margin: 0 auto;
+	margin-bottom: 0.5rem;
+	padding: 0 0.2rem;
+	border-radius: 0.2rem;
+}
+
+.tuola-form .tuola-inputs label {
+	font-size: 0.34rem;
+	color: #333;
+	width: 20%;
+}
+
+.tuola-form .tuola-inputs input {
+	color: #333;
+	font-size: 0.301rem;
+	height: 0.6rem;
+	margin-bottom: 0.1rem;
+	width: 75%;
+	padding-left: 0.2rem;
+}
+
+.tuola-form .tuola-button {
+	display: inline-block;
+	width: 2rem;
+	height: 1rem;
+	/*color: #fff;*/
+	font-size: 0.33rem;
+	line-height: 1rem;
+	text-align: center;
+	border-radius: 0.2rem;
+	font-weight: bold;
+}
+
+.tuola-form .tuola-submit {
+	background: rgb(251,216,64);
+	margin-right: 0.8rem;
+}
+
+.tuola-form .btngroup {
+	width: 95%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.tuola-form .tuola-cancle {
+		background-color: rgb(64,58,58);
+		color: rgb(251,216,64);
+}
+
+/*遮罩层样式*/
+
+.modal {
+	max-width:750px;
+	margin:0 auto;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, .7);
+	display:none; 
+}
+
+.modal-dialog {
+	/*负责宽和定位*/
+	width: 80%;
+	margin: 2rem auto;
+}
+
+.modal-content {
+	/*负责背景色、边框、阴影*/
+	background: #fff;
+	min-height: 1rem;
+	padding-top: 0.7rem;
+	position: relative;
+}
+
+.modal-content .close {
+	color: #cacaca;
+	font-size: 0.33rem;
+	display: block;
+	height: 0.8rem;
+	width: 0.8rem;
+	text-align: center;
+	line-height: 0.8rem;
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+}
+
+.modal-content .right-bg {
+	background: url("../img/right.png") center no-repeat;
+	width: 1.27rem;
+    height: 1.27rem;
+	margin: 0 auto;
+	margin-bottom: 0.2rem;
+	background-size: 100%;
+}
+
+.modal-content .message {
+	width:90%;
+	font-size: 0.29rem;
+	color: #1a1a1a;
+	text-align: center;
+	margin: 0 auto;
+	line-height: 0.5rem;
+}
+
+.modal-content .confirm {
+	display: block;
+	font-size:0.33rem;
+	color:#fff;
+	background:#0ECEC1;
+	margin:0.3rem auto;
+	width:2.8rem;
+	text-align: center;
+	height:0.8rem;
+	line-height: 0.8rem;
+	cursor: pointer;
+	border-radius: 0.1rem;
+}
+.modal-content .content-bot-box {
+	width: 100%;
+	background-color: #0ECEC1;
+	text-align: center;
+	padding-top: 0.4rem;
+}
+
+
+.modal-content .content-bot-box img {
+	width: 2rem;
+	margin-bottom: 0.3rem;
+}
+
+.modal-content .content-bot-box .code p {
+	padding-bottom: 0.3rem;
+	color: #fff;
+	font-size: 0.33rem;
+}
+
+.error {
+	color: red;
+}
+.pop-shade{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 100%;
+	background-color: rgba(65,58,29,.8);
+	display: none;
+	z-index: 100;
+}
+.popUp{
+	height: 9.0rem;
+    width: 6.6rem;
+	background: #fff;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	border-radius: 0.2rem;
+	z-index: 1000;
+	display: none;
+}
+.popUp-delete{
+	width: 100%;
+	font-size: 16px;
+	color: rgb(202,202,202);
+	text-align: right;
+	padding: 0.3rem ;
+	font-weight: bold;
+}
+.right-icon{
+	height: 1rem;
+	width: 1rem;
+	background: url(../img/right-icon.png) no-repeat;
+	background-size: contain;
+	margin: 0 auto;
+}
+.pWord{
+	width: 100%;
+	font-size: 16px;
+	margin-top:.2rem ;
+	text-align: center;
+}
+.pWord p{
+	margin-top: .1rem;
+	color: #000000;
+}
+.popAffirm{
+	height: 0.9rem;
+	width:2.4rem;
+	background: rgb(251,216,41);
+	line-height: .9rem;
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
+	margin: .5rem auto 0 auto;
+	letter-spacing: 2px;
+	border-radius: .2rem;
+}
+.popQR-footer{
+	font-size: 14px;
+	margin-top: .8rem;
+	width: 100%;
+	height: 3.45rem;
+	border-bottom-right-radius: .2rem;
+	border-bottom-left-radius: .2rem;
+	background: rgb(251,216,41);
+	padding-top: .5rem;
+}
+.popQR{
+	height: 2rem;
+	width: 2rem;
+	background: url(../img/QR-pic.png) no-repeat;
+	background-size: contain;
+	margin: 0 auto;
+}
+.popQR-word{
+	text-align: center;
+	line-height: .8rem;
+}

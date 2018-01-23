@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>定点医院</title>
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<meta content="email=no" name="format-detection">
+		<script type="text/javascript">
+			//	阿里高清方案 
+			! function(e) {
+				function t(a) {
+					if(i[a]) return i[a].exports;
+					var n = i[a] = {
+						exports: {},
+						id: a,
+						loaded: !1
+					};
+					return e[a].call(n.exports, n, n.exports, t), n.loaded = !0, n.exports
+				}
+				var i = {};
+				return t.m = e, t.c = i, t.p = "", t(0)
+			}([function(e, t) {
+				"use strict";
+				Object.defineProperty(t, "__esModule", {
+					value: !0
+				});
+				var i = window;
+				t["default"] = i.flex = function(e, t) {
+					var a = e || 100,
+						n = t || 1,
+						r = i.document,
+						o = navigator.userAgent,
+						d = o.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),
+						l = o.match(/U3\/((\d+|\.){5,})/i),
+						c = l && parseInt(l[1].split(".").join(""), 10) >= 80,
+						p = navigator.appVersion.match(/(iphone|ipad|ipod)/gi),
+						s = i.devicePixelRatio || 1;
+					p || d && d[1] > 534 || c || (s = 1);
+					var u = 1 / s,
+						m = r.querySelector('meta[name="viewport"]');
+					m || (m = r.createElement("meta"), m.setAttribute("name", "viewport"), r.head.appendChild(m)), m.setAttribute("content", "width=device-width,user-scalable=no,initial-scale=" + u + ",maximum-scale=" + u + ",minimum-scale=" + u), r.documentElement.style.fontSize = a / 2 * s * n + "px"
+				}, e.exports = t["default"]
+			}]);
+			flex(100, 1);
+		</script>
+		<!--<script src="../js/adapt.js"></script>-->
+		<script src="../js/jquery-2.1.4.min.js"></script>
+		<script src="../js/zepto.js"></script>
+		<script src="../js/touch.js"></script>
+		<script src="../js/event.js"></script>
+		<script src="../js/baidutongji.js"></script>
+		<link rel="stylesheet" href="../css/newhospital.css" />
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="header">
+				<img src="../img/banner.jpg" class="img-responsive">
+			</div>
+			<div class="section-one">
+				<img src="../img/section-one.png" alt="" class="img-responsive" />
+			</div>
+			<div class="section-two">
+				<img src="../img/section-two.png" alt="" class="img-responsive" />
+			</div>
+			<div class="section-three">
+				<img src="../img/section-three.png" alt=""  class="img-responsive"/>
+			</div>
+			<div class="section-four">
+				<img src="../img/section-four.png" alt="" class="img-responsive" />
+				<a href="mapplyForm.html"><input type="button"  class="applyNow"/></a>
+			</div>
+			<div class="section-six">
+				<img src="../img/section-six.png" alt="" class="img-responsive" />
+				<a href="mapplyForm.html"><input type="button"  class="applyNow"/></a>
+			</div>
+			<div class="section-ev">
+				<img src="../img/section-ev.png" alt="" class="img-responsive" />
+			</div>
+			<div class="section-eight">
+				<img src="../img/section-eight.png" alt="" class="img-responsive" />
+				<a href="mapplyForm.html"><input type="button"  class="applyNow"/></a>
+			</div>
+			<div class="section-QR">
+				<img src="../img/QRcode.png" alt="" class="img-responsive" />
+				<div class="QR-pic">
+					<img src="../img/QR-pic.png" alt="" />
+				</div>
+			</div>
+			<div class="footer">
+				<img src="../img/footer.png" alt="" class="img-responsive"/>
+			</div>
+
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		$(".applyNow").on("tap",function(){
+			window.location.href="mapplyForm.html"
+		})
+		
+		//移动端适配
+		phoneApp();
+		function phoneApp(){
+			var num = window.devicePixelRatio;
+			var bili = 1/num;
+			//创建meta元素；
+			var meta_vp = document.createElement('meta');
+			meta_vp.name = "viewport";
+			meta_vp.content = 'width=device-width, user-scalable=no, initial-scale='+bili+', maximum-scale='+bili+', minimum-scale='+bili+'';
+			document.head.appendChild(meta_vp);
+			var wid = document.documentElement.clientWidth/10;
+			document.documentElement.style.fontSize = wid + 'px';
+			
+		}
+	</script>
+
+</html>
