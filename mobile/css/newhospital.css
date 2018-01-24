@@ -192,6 +192,13 @@ input {
 	}
 
 }
+body {
+      font-family: "MicroSoft Yahei";
+       color: #333;
+       background-color: #fff;
+       font-size: 0.24rem;
+}
+
 @media only screen and (max-device-width:768px) {
 	input.applyNow {
 		bottom: 1rem;
@@ -244,7 +251,7 @@ input {
 }
 
 .section-ev{
-	height: 14.51rem;
+	height: 14.4561rem;
 }
 .section-eight a{
 	position: absolute;
