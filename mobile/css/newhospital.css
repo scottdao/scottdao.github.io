@@ -1,4 +1,4 @@
-﻿* {
+* {
 	box-sizing: border-box;
 	/* 在X5新内核Blink中，在排版页面的时候，会主动对字体进行放大，会检测页面中的主字体，当某一块字体在我们的判定规则中，认为字号较小，并且是页面中的主要字体，就会采取主动放大的操作。然而这不是我们想要的，可以采取给最大高度解决 */
 	max-height: 100000px;
@@ -223,13 +223,14 @@ body {
 }
 /*宠物定保样式*/
  .header {
-    height: 12.22rem;
+    height: 12.36rem;
  }
  .section-one{
-    height:  4.60rem;
+    height: 5.1rem;
+    background: rgb(251,216,64);
  }
  .section-two {
-    height: 4.951rem;
+    height: 5.131rem;
     background: rgb(251,216,64);
 }
 .section-three{
