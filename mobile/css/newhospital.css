@@ -137,8 +137,8 @@ a {
 	/*display:none;*/
 
 
-}
-*/ .section-two a {
+}*/ 
+.section-two a {
 	display: block;
 }
 input {
@@ -226,13 +226,15 @@ body {
     height: 12.22rem;
  }
  .section-one{
-    height: 4.4835rem;
+    height:  4.60rem;
  }
  .section-two {
-   height: 4.441rem;
+    height: 5.131rem;
+    background: rgb(251,216,64);
 }
 .section-three{
 	height: 4.5459rem;
+	background: rgb(251,216,64);
 }
 .section-four{
 	height: 2.625rem;
