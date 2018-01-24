@@ -15,7 +15,6 @@
 *:after {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
 html,
 body,
 div,
@@ -223,7 +222,7 @@ input {
     height: 4.4835rem;
  }
  .section-two {
-   height: 4.541rem;
+   height: 4.441rem;
 }
 .section-three{
 	height: 4.5459rem;
