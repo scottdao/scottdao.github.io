@@ -1,5 +1,5 @@
 
-//表单验证
+//琛ㄥ崟楠岃瘉
 $(function() {
 	var hosName = false;
 	var Loca = false;
@@ -70,8 +70,8 @@ $(function() {
 			}
 		}
 		if($(this).is("#phoneNum")) {
-			//var tel = /^(0\d{2}-\d{8}(-\d{1,4})?)|(0\d{3}-\d{7,8}(-\d{1,4})?)$/;//座机号（支持分机）
-			var phone = /^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\d{8}$/; //手机
+			//var tel = /^(0\d{2}-\d{8}(-\d{1,4})?)|(0\d{3}-\d{7,8}(-\d{1,4})?)$/;//搴ф満鍙凤紙鏀寔鍒嗘満锛�
+			var phone = /^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\d{8}$/; //鎵嬫満
 			if($("#phoneNum").val() != "") {
 				if(!(phone.test($("#phoneNum").val()))) {
 					$(this).parent().css("border", "1px solid red");
@@ -146,24 +146,25 @@ $(function() {
 		};
 		if(hosName & Loca & aName & ph & EMail) {
 			$.ajax({
-//				url: document.URL.substring(0, document.URL.indexOf("/BaoXianFormProject")) + "/BaoXianFormProject/fpHospital/save",
-				url:"http://" + "ipidb.tuolaleasing.com" + "/fpHospital/save",
+				//以下地址为测试环境访问ip和端口，测试完成将其注掉，放开正式环境访问路径
+				url:"http://10.16.26.18:8080/BaoXianFormProject/fpHospital/save",
+				//修改为正式环境的ip和端口即可，同时删除或注掉测试环境路径
+				//url:"http://" + "ipidb.tuolaleasing.com" + "/fpHospital/save",
 				type: "post",
 				data: $("#TuoLa_Form").serialize(),
 				success: function(data) {
 					if(data.errorMsg != '' && data.errorMsg != null && data.errorMsg != "undefined") {
-						//ajax发送成功，出现弹框；
-						$('#popUp').show();
-						$('#popShade').show();
-					} else { /*galert("您的申请已提交");*/
-						$(".modal").show();
-						$(".modal-content").show();
-
+						alert(data.errorMsg);
+						
+					} else { /*galert("鎮ㄧ殑鐢宠宸叉彁浜�");*/
+						$('#popUp').fadeIn();
+						$('#popShade').fadeIn();
 					}
 
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
 					alert(errorThrown);
+					
 					
 				}
 
@@ -172,13 +173,9 @@ $(function() {
 		}
 
 	})
-	//点击弹框的X和确认关闭弹框
+	//鐐瑰嚮寮规鐨刋鍜岀‘璁ゅ叧闂脊妗�
 	$('#closeBtn').click(function(){
-		$('#popUp').hide();
-		$('#popShade').hide();
-	})
-	$('#affirmBtn').click(function(){
-		$('#popUp').hide();
-		$('#popShade').hide();
+		$('#popUp').fadeOut();
+		$('#popShade').fadeOut();
 	})
 })

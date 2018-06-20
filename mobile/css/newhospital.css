@@ -15,7 +15,6 @@
 *:after {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
 html,
 body,
 div,
@@ -97,14 +96,6 @@ ol,
 li {
 	list-style: none;
 }
-
-body {
-	font-family: "MicroSoft Yahei";
-	color: #333;
-	background-color: #fff;
-	font-size: 0.24rem;
-}
-
 a {
 	text-decoration: none;
 }
@@ -146,8 +137,8 @@ a {
 	/*display:none;*/
 
 
-}
-*/ .section-two a {
+}*/ 
+.section-two a {
 	display: block;
 }
 input {
@@ -201,6 +192,13 @@ input {
 	}
 
 }
+body {
+      font-family: "MicroSoft Yahei";
+       color: #333;
+       background-color: #fff;
+       font-size: 0.24rem;
+}
+
 @media only screen and (max-device-width:768px) {
 	input.applyNow {
 		bottom: 1rem;
@@ -225,19 +223,21 @@ input {
 }
 /*宠物定保样式*/
  .header {
-    height: 5.625rem;
+    height: 12.36rem;
  }
  .section-one{
-    height: 4.4835rem;
+    background: rgb(251,216,64);
  }
  .section-two {
-   height: 4.541rem;
+    height: 5.131rem;
+    background: rgb(251,216,64);
 }
 .section-three{
-	height: 4.5959rem;
+	height: 4.5459rem;
+	background: rgb(251,216,64);
 }
 .section-four{
-	height: 2.635rem;
+	height: 2.625rem;
 	position: relative;
 }
 .section-four a{
@@ -253,7 +253,7 @@ input {
 }
 
 .section-ev{
-	height: 14.51rem;
+	height: 14.4561rem;
 }
 .section-eight a{
 	position: absolute;
@@ -267,7 +267,7 @@ input {
     margin: auto;
     }
 .section-eight{
-	height: 4.8rem;
+	height: 4.75rem;
 	position: relative;
 }
 .section-QR{
@@ -279,4 +279,11 @@ input {
     z-index: 1000;
     top: 0;
     left: 2.60rem;
+}
+.QR-pic>img{
+	height: 4.9rem;
+    width: 5rem;
+}
+.footer{
+	height: 4.15rem;
 }

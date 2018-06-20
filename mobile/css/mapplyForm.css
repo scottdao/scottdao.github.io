@@ -16,7 +16,7 @@ input[type="reset"] {
 }
 
 body {
-	background: #EEEEEE;
+	/*background: #EEEEEE;*/
 	font-size: 14px;
 	font-family: "MicroSoft Yahei";
 	/*height: 5000px;*/
@@ -226,6 +226,7 @@ section {
 .error {
 	color: red;
 }
+
 .pop-shade{
 	position: fixed;
 	top: 0;
@@ -250,7 +251,7 @@ section {
 	margin: auto;
 	border-radius: 0.2rem;
 	z-index: 1000;
-	display: none;
+	/* display: none; */
 }
 .popUp-delete{
 	width: 100%;
