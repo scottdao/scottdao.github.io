@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <video id="videoRef"></video>
+    <button id="btn" style="width: 100px;height: 100px;">开始</button>
+    <script src="flv.min.js"></script>
+    <script>
+        // console.log(Flv)
+        if (Flv.isSupported()) {
+            const videoRef = document.getElementById('videoRef');
+            const flvPlayer = Flv.createPlayer({
+                type: 'flv',
+                url: 'http://liteavapp.qcloud.com/live/liteavdemoplayerstreamid.flv'
+            });
+            flvPlayer.attachMediaElement(videoRef);
+            console.log(flvPlayer)
+            flvPlayer.load();
+
+            document.getElementById('btn').onclick = function() {
+                flvPlayer.play();
+            }
+        }
+    </script>
+</body>
+
+</html>
