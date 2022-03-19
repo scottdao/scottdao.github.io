@@ -9,22 +9,156 @@ const titleChartStyle = {
 echarts_1();
 echarts_5();
 platIcons()
+let flag = true
+// 切换地区
+$('#pro-btn').click(function(){
+    // console.log($(this))
+    if(flag){
+        flag = false
+        $(this).html('四川省：21市州')
+    }else{
+        flag = true
+        $(this).html('全国')
+    }
+})
+platCharts()
+function platCharts(){
+        var myChart = echarts.init(document.getElementById('classFiled'));
+        let option = {
+       //  backgroundColor: '#00265f',
+         tooltip: {
+             trigger: 'axis',
+             axisPointer: {
+                 type: 'shadow'
+             }
+         },
+         title: {
+             text: '应用分类',
+             top:0,
+             // backgroundColor: 'rgba(255, 255,255,1)'
+             textStyle:{
+                 ...titleChartStyle
+             }
+         },
+         grid: {
+             left: '10px',
+             top:'40px',
+             right: '0',
+             bottom: '0',
+            containLabel: true
+         },
+         xAxis: [{
+             type: 'category',
+             data:[
+               '网络约车类',
+               '网络购物类',
+               '母婴电商类',
+               '旅游服务类',
+               '餐饮外卖类',
+               "交通票务类",
+               '演出票务类', 
+               '租车服务类',
+               '婚恋交友类',
+               '邮件快递类',
+               '生活服务类', 
+               '问诊医药类',
+               '生鲜电商类',
+               '视频文娱类',
+               '工具游戏类'
+             ],
+             axisLine: {
+                 show: true,
+                //  axisLabel:{'interval':0,rotate:30}
+              lineStyle: {
+                     color: "rgba(255,255,255,.1)",
+                     width: 1,
+                     type: "solid"
+                 },
+             },
+             
+             axisTick: {
+                 show: false,
+             },
+            axisLabel:  {
+                interval: 0,
+                rotate:50,
+                show: true,
+                splitNumber: 15,
+                textStyle: {
+                    color: "rgba(255,255,255,.6)",
+                    fontSize: '12',
+                },
+            },
+         }],
+         yAxis: [{
+             type: 'value',
+             axisLabel: {
+                //formatter: '{value} %'
+                 show:true,
+                  textStyle: {
+                          color: "rgba(255,255,255,.6)",
+                         fontSize: '12',
+                     },
+             },
+             axisTick: {
+                 show: false,
+             },
+             axisLine: {
+                 show: true,
+                 lineStyle: {
+                     color: "rgba(255,255,255,.1	)",
+                     width: 1,
+                     type: "solid"
+                 },
+             },
+             splitLine: {
+                 lineStyle: {
+                    color: "rgba(255,255,255,.1)",
+                 }
+             }
+         }],
+         series: [{
+             type: 'bar',
+             data:[23,24,10,9,3,10,15,19,12,13,9,10,35,44, 9],
+             barWidth:'35%', //柱子宽度
+             lineStyle: {
+                 
+                 normal: {
+                     color: '#0184d5',
+                     width: 2
+                 }
+             },
+            // barGap: 1, //柱子之间间距
+             itemStyle: {
+                 normal: {
+                     color:'#2f89cf',
+                     opacity: 1,
+                     barBorderRadius: 5,
+                 }
+             }
+         }
+         ]
+    };
+           
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+    window.addEventListener("resize",function(){
+        myChart.resize();
+    });
+}
 function platIcons(){
     window.fetch('../json/icon.json').then(res=>res.json()).then(response=>{
         response.icons.forEach(item=>{
             $('.plat-icon-list').append(`
                 <li class="icon-list-li">
-                    <div class='list-li-img'>
+                    <div class='list-li-img' title='${item.name}'>
                     ${
                         item.type=== 'img'?`<img src='../icons/${item.icon}.png' />`:`<svg class="icon" aria-hidden="true">
                             <use xlink:href="#${item.icon}"></use>
                         </svg>`
                     }
                     </div>
-                    ${item.name?`<div>
-                                ${item.name}
-                        </div>`:""
-                    }
+                   
                 </li>
             `)
         })
@@ -166,6 +300,9 @@ function HotShops(){
         ]
       };
     option && myChart.setOption(option);
+    window.addEventListener("resize",function(){
+        myChart.resize();
+    });
 }
 
 // 疑似价格违法平台
@@ -173,27 +310,28 @@ legalPlat()
 function legalPlat(){
     window.fetch('../json/Illegal.json').then(res=>res.json()).then(response=>{
         // console.log(response, 'legal')
+//         ${item.name?`<div>
+//         ${item.name}
+// </div>`:""
+// }
         response.icons.forEach(item=>{
             $('.noRuleIcon').append(`
                 <li class="no-rule-li">
-                    <div class='list-li-img'>
+                    <div class='list-li-img' title='${item.name}'>
                         ${
                             item.type=== 'img'?`<img src='../icons/${item.icon}.png' />`:`<svg class="icon" aria-hidden="true">
                                 <use xlink:href="#${item.icon}"></use>
                             </svg>`
                         }
                     </div>
-                    ${item.name?`<div>
-                                ${item.name}
-                        </div>`:""
-                    }
+                   
                 </li>
             `)
         })
         response.titList.forEach(item=>{
             $('.noRuleTitle').append(`
             <li class="no-rule-icon-li ">
-                <div class="font-color-withe check-li-frame padding-frame" >${item.name}</div>
+                <div class="font-color-withe check-li-frame padding-frame" title='${item.name}'>${item.name}</div>
               </li>
             `)
         })
@@ -209,17 +347,14 @@ function noLegal(){
         response.icons.forEach(item=>{
             $('.noLegalList').append(`
                 <li class="no-rule-li">
-                    <div class='list-li-img'>
+                    <div class='list-li-img' title='${item.name}'>
                         ${
                             item.type=== 'img'?`<img src='../icons/${item.icon}.png' />`:`<svg class="icon" aria-hidden="true">
                                 <use xlink:href="#${item.icon}"></use>
                             </svg>`
                         }
                     </div>
-                    ${item.name?`<div>
-                                ${item.name}
-                        </div>`:""
-                    }
+                   
                 </li>
             `)
         })
@@ -446,3 +581,4 @@ function echarts_5() {
         });
 }
 })
+

@@ -257,7 +257,9 @@ to {transform: rotate(-359deg);}
   /* 监测平台总数 end */
   /* 重点监测商品 start */
   
-  
+  .plat-charts{
+	  color:#fff;
+  }
   .check-ul::-webkit-scrollbar, .clear-scrollbar::-webkit-scrollbar{
 		display: none
 	}
@@ -316,5 +318,12 @@ to {transform: rotate(-359deg);}
   .list-li-img>img{
 	  width: 24px;
 	  height: 24px;
+  }
+  .pulll_left>div{
+	  color:#fff;
+  }
+  .btn-switch{
+	  margin-top:10px;
+	  cursor:pointer;
   }
   /* 重点监测商品 end */

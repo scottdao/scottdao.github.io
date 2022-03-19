@@ -15,7 +15,8 @@ jsonArr.forEach(item=>{
     const contentO =  new Function(`return ${jsonContent}`)()
     // console.log(contentO)
     if(contentO.icons && contentO.icons.length){
-        const list = iconsList.map(item=>({ icon: item.replace(/\.png$/, ''), name: null, type:'img' }))
+        // const name  = item.replace(/\.png$/, '')
+        const list = iconsList.map(item=>({ icon: item.replace(/\.png$/, ''), name: item.replace(/\.png$/, ''), type:'img' }))
         contentO.icons = list
         fs.writeFileSync(file_path, JSON.stringify(contentO))
     }
