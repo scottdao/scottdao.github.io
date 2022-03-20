@@ -273,6 +273,12 @@ to {transform: rotate(-359deg);}
 	.ul-over-height{
 		height:calc(3.2rem - 45px );
 	}
+	.ul-over-height-36{
+		height:calc(3.6rem - 45px );
+	}
+	.ul-over-auto-28{
+		height:calc(2.8rem - 45px );
+	}
   .check-ul{
 	  display: flex;
 	  flex-direction: column;
@@ -325,5 +331,25 @@ to {transform: rotate(-359deg);}
   .btn-switch{
 	  margin-top:10px;
 	  cursor:pointer;
+  }
+  .allnav-height{
+	  height:calc(100% - 10px);
+  }
+  .ul-li-nolegal{
+	  display:flex;
+	  flex-direction:column;
+
+  }
+  .ul-li-nolegal>li:not(:first-child){
+	  margin-top:15px;
+  }
+  .ul-li-nolegal>li>div{
+	  height:43px;
+	  display:flex;
+	  align-items:center;
+	  justify-content:center;
+  }
+  .ul-over-height-2{
+	  height:calc(3rem - 58px);
   }
   /* 重点监测商品 end */

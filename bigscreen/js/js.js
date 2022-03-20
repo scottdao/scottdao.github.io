@@ -9,10 +9,11 @@ const titleChartStyle = {
 echarts_1();
 echarts_5();
 platIcons()
-let flag = true
+let flag = false
 // 切换地区
 $('#pro-btn').click(function(){
     // console.log($(this))
+    // flag = false
     if(flag){
         flag = false
         $(this).html('四川省：21市州')
@@ -148,7 +149,7 @@ function platCharts(){
 }
 function platIcons(){
     window.fetch('../json/icon.json').then(res=>res.json()).then(response=>{
-        response.icons.forEach(item=>{
+        response.icons.slice(0, 48).forEach(item=>{
             $('.plat-icon-list').append(`
                 <li class="icon-list-li">
                     <div class='list-li-img' title='${item.name}'>
@@ -309,11 +310,6 @@ function HotShops(){
 legalPlat()
 function legalPlat(){
     window.fetch('../json/Illegal.json').then(res=>res.json()).then(response=>{
-        // console.log(response, 'legal')
-//         ${item.name?`<div>
-//         ${item.name}
-// </div>`:""
-// }
         response.icons.forEach(item=>{
             $('.noRuleIcon').append(`
                 <li class="no-rule-li">
@@ -344,19 +340,24 @@ function legalPlat(){
 noLegal()
 function noLegal(){
     window.fetch('../json/noLegal.json').then(res=>res.json()).then(response=>{
-        response.icons.forEach(item=>{
+        response.titleArr.forEach(item=>{
             $('.noLegalList').append(`
-                <li class="no-rule-li">
-                    <div class='list-li-img' title='${item.name}'>
-                        ${
-                            item.type=== 'img'?`<img src='../icons/${item.icon}.png' />`:`<svg class="icon" aria-hidden="true">
-                                <use xlink:href="#${item.icon}"></use>
-                            </svg>`
-                        }
-                    </div>
-                   
-                </li>
+            <li class="no-rule-icon-li ">
+                <div class="font-color-withe check-li-frame padding-frame" title='${item}'>${item}</div>
+              </li>
             `)
+            // $('.noLegalList').append(`
+            //     <li class="no-rule-li">
+            //         <div class='list-li-img' title='${item.name}'>
+            //             ${
+            //                 item.type=== 'img'?`<img src='../icons/${item.icon}.png' />`:`<svg class="icon" aria-hidden="true">
+            //                     <use xlink:href="#${item.icon}"></use>
+            //                 </svg>`
+            //             }
+            //         </div>
+                   
+            //     </li>
+            // `)
         })
         $('.noLegalTitle').html(response.title)
         $('.noLegalTotal').html(response.total)
