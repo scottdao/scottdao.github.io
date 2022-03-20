@@ -349,6 +349,9 @@ to {transform: rotate(-359deg);}
 	  align-items:center;
 	  justify-content:center;
   }
+  ul.check-ul>li>div{
+	  height:36px;
+  }
   .ul-over-height-2{
 	  height:calc(3rem - 58px);
   }

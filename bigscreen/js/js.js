@@ -147,38 +147,110 @@ function platCharts(){
         myChart.resize();
     });
 }
+function setIconsAnimation(list){
+    $('.plat-icon-list').children().fadeOut(1000).remove()
+    list.forEach(item=>{
+        $('.plat-icon-list').fadeIn(1000).append($(`
+            <li class="icon-list-li ani-${item.index}">
+                <div class='list-li-img' title='${item.name}'>
+                ${
+                    item.type=== 'img'?`<img src='../icons/${item.icon}.png' />`:`<svg class="icon" aria-hidden="true">
+                        <use xlink:href="#${item.icon}"></use>
+                    </svg>`
+                }
+                </div>
+            
+            </li>
+        `).fadeIn(1000))
+    })
+}
+let timer1 = null
+if(document.hide){
+    clearInterval(timer1)
+}
 function platIcons(){
     window.fetch('../json/icon.json').then(res=>res.json()).then(response=>{
-        response.icons.slice(0, 48).forEach(item=>{
-            $('.plat-icon-list').append(`
-                <li class="icon-list-li">
-                    <div class='list-li-img' title='${item.name}'>
-                    ${
-                        item.type=== 'img'?`<img src='../icons/${item.icon}.png' />`:`<svg class="icon" aria-hidden="true">
-                            <use xlink:href="#${item.icon}"></use>
-                        </svg>`
-                    }
-                    </div>
-                   
-                </li>
-            `)
-        })
+        let totalList = response.icons
+        let len = totalList.length;
+        let countEnd = 48
+        let countStart = 0
+        let list = totalList.slice(countStart, countEnd).map((item, index)=>({...item, index:countStart+index}))
+       
+        setIconsAnimation(list)
+        $('.plat-icon-list').slideDown(1000)
+        if(totalList.length>48){
+            clearInterval(timer1)
+            timer1 =  setInterval(() => {
+                countStart = countEnd
+                countEnd += 48 
+                list = totalList.slice(countStart, countEnd)
+                setIconsAnimation(list)
+                if(countEnd>len){
+                    countStart = 0
+                    countEnd = 48
+                    // clearInterval(timer1)
+                }
+            }, 5000);
+        }
         $('.platNum').html(response.icons.length)
         $('.platTitle').html(response.title)
     })
 }
-checkListFn()
-function checkListFn(){
-    window.fetch('../json/checkServer.json').then(res=>res.json()).then(response=>{
-        response.servers.forEach(item=>{
-            $('.check-ul').append(` <li class="check-li checked-list">
-                    <div class="font-color-withe check-li-frame" >${item.studyName}</div>
-                    <div class="font-color-withe check-li-frame" >${item.dataName}</div>
-                </li>`
+
+let urlPath = 'http://jrdongcha-test.idatafun.com/jrdongcha/api/research/researchList'
+let params = {
+    pageNo: 1,
+    pageSize: 3,
+    type: "hot",
+    userId: 0
+}
+const requestList = (pageNo, callback)=>{
+    window.fetch(urlPath, {
+        method:'post',
+        body:JSON.stringify({...params, pageNo}),
+        credentials: "include",
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }).then(res=>{ 
+        return res.json()
+    })
+    .then(res=>{
+        // console.log(res, 998766)
+        $('.server-num').html(res.data.total)
+        $('.check-ul').children().fadeOut(1000).remove()
+        res.data.records && res.data.records.forEach(item=>{
+            $('.check-ul').fadeIn(1000).append($(`<li class="no-rule-icon-li">
+                    <div class="font-color-withe check-li-frame padding-frame" title='${item.researchName}'>${item.researchName}</div>
+                </li>`).fadeIn(1000)
             )
         })
+        callback(res.data.records)
+    })
+}
+checkListFn()
+function checkListFn(){
+   
+    window.fetch('../json/checkServer.json').then(res=>res.json()).then(response=>{
+    //    console.log(response, 99877)
+        // response.servers.forEach(item=>{
+        //     // console.log(item)
+        //     $('.check-ul').append(`<li class="no-rule-icon-li">
+        //             <div class="font-color-withe check-li-frame padding-frame" title='${item}'>${item}</div>
+        //         </li>`
+        //     )
+        // })
+        let pageSize = 10, pageNo = 1;
+        let timer3 = null
+        const fn = (data)=>((!data || !data.length)?(pageNo = 1):"")
+        requestList(pageNo, (data)=>((!data||!data.length)?clearInterval(timer3):""))
+        timer3 && clearInterval(timer3);
+        timer3 = setInterval(()=>{
+            pageNo++
+            requestList(pageNo, fn)
+        }, 5000)
         $('.checkServerTitle').html(response.title)
-        $('.server-num').html(response.serverNum)
+        
         $('.server-addNums').html(`昨日${response.addNum}`)
     })
 }
@@ -308,6 +380,7 @@ function HotShops(){
 
 // 疑似价格违法平台
 legalPlat()
+
 function legalPlat(){
     window.fetch('../json/Illegal.json').then(res=>res.json()).then(response=>{
         response.icons.forEach(item=>{
@@ -331,12 +404,47 @@ function legalPlat(){
               </li>
             `)
         })
+       
         $('.leageTitle').html(response.title)
         $('.legalTotal').html(response.total)
         $('.legalTimer').html(`（过去${response.timer}月）`)
     })
 }
+function clearInterVal(timer){
+    timer && clearTimeout(timer)
+}
+function interval(callback, time){
+    clearTimeout(timer)
+     var timer =  setTimeout(function(){
+          callback(function(){
+              return timer
+          }) 
+          interval(callback, time)   
+      }, time)
+      return timer
+}
+let timer2 = null
 // 暂未发现价格违法平台
+function setLegalAni(){
+    const titleEl =  $('.noLegalList')
+    // setInterval(())
+    const clientHeight =  titleEl.height()
+    // console.log(titleEl, 99877)
+    // const parentNode = titleEl.parent()
+    let top =   titleEl[0].scrollTop
+    const srollHeight = titleEl[0].scrollHeight
+    if(top+clientHeight >=srollHeight){
+        titleEl[0].scrollTop = 0
+        clearTimeout(timer2)
+        timer2 =  setTimeout(()=>{
+            setLegalAni()
+        }, 100)
+    }else{
+        titleEl[0].scrollTop++
+        requestAnimationFrame(setLegalAni)
+    }
+//   console.log(top)
+}
 noLegal()
 function noLegal(){
     window.fetch('../json/noLegal.json').then(res=>res.json()).then(response=>{
@@ -359,6 +467,8 @@ function noLegal(){
             //     </li>
             // `)
         })
+        requestAnimationFrame(setLegalAni)
+       
         $('.noLegalTitle').html(response.title)
         $('.noLegalTotal').html(response.total)
         $('.noLegalTimer').html(`（过去${response.timer}月）`)
@@ -367,219 +477,218 @@ function noLegal(){
 function echarts_1() {
         // 基于准备好的dom，初始化echarts实例
     let myChart = echarts.init(document.getElementById('echart1'));
-
-       option = {
-  //  backgroundColor: '#00265f',
-    title: {
-        text: '过去7天新增条数',
-        top:0,
-        // backgroundColor: 'rgba(255, 255,255,1)'
-        textStyle:{
-            ...titleChartStyle
-        }
-    },
-    tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-            type: 'shadow'
-        }
-    },
-    grid: {
-        left: '0%',
-		top:'40px',
-        right: '0%',
-        bottom: '0',
-       containLabel: true
-    },
-    xAxis: [{
-        type: 'category',
-      		data: ['3月12日', '3月11日', '3月10日', '3月09日', '3月08日', '3月07日', '3月06日'],
-        axisLine: {
-            show: true,
-         lineStyle: {
-                color: "rgba(255,255,255,.1)",
-                width: 1,
-                type: "solid"
-            },
+    option = {
+    //  backgroundColor: '#00265f',
+        title: {
+            text: '过去7天新增条数',
+            top:0,
+            // backgroundColor: 'rgba(255, 255,255,1)'
+            textStyle:{
+                ...titleChartStyle
+            }
         },
-        axisTick: {
-            show: false,
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
         },
-		axisLabel:  {
-                interval: 0,
-               // rotate:50,
+        grid: {
+            left: '0%',
+            top:'40px',
+            right: '0%',
+            bottom: '0',
+        containLabel: true
+        },
+        xAxis: [{
+            type: 'category',
+                data: ['3月12日', '3月11日', '3月10日', '3月09日', '3月08日', '3月07日', '3月06日'],
+            axisLine: {
                 show: true,
-                splitNumber: 15,
+            lineStyle: {
+                    color: "rgba(255,255,255,.1)",
+                    width: 1,
+                    type: "solid"
+                },
+            },
+            axisTick: {
+                show: false,
+            },
+            axisLabel:  {
+                    interval: 0,
+                // rotate:50,
+                    show: true,
+                    splitNumber: 15,
+                    textStyle: {
+                        color: "rgba(255,255,255,.6)",
+                        fontSize: '12',
+                    },
+                },
+        }],
+        yAxis: [{
+            type: 'value',
+            axisLabel: {
+            //formatter: '{value} %'
+                show:true,
                 textStyle: {
- 					color: "rgba(255,255,255,.6)",
-                    fontSize: '12',
+                        color: "rgba(255,255,255,.6)",
+                        fontSize: '12',
+                    },
+            },
+            axisTick: {
+                show: false,
+            },
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: "rgba(255,255,255,.1	)",
+                    width: 1,
+                    type: "solid"
                 },
             },
-    }],
-    yAxis: [{
-        type: 'value',
-        axisLabel: {
-           //formatter: '{value} %'
-			show:true,
-			 textStyle: {
- 					color: "rgba(255,255,255,.6)",
-                    fontSize: '12',
-                },
-        },
-        axisTick: {
-            show: false,
-        },
-        axisLine: {
-            show: true,
-            lineStyle: {
-                color: "rgba(255,255,255,.1	)",
-                width: 1,
-                type: "solid"
-            },
-        },
-        splitLine: {
-            lineStyle: {
-               color: "rgba(255,255,255,.1)",
+            splitLine: {
+                lineStyle: {
+                color: "rgba(255,255,255,.1)",
+                }
+            }
+        }],
+        series: [
+            {
+            type: 'bar',
+            data: [32, 25, 18, 16, 28, 27, 19],
+            barWidth:'35%', //柱子宽度
+        // barGap: 1, //柱子之间间距
+            itemStyle: {
+                normal: {
+                    color:'#2f89cf',
+                    opacity: 1,
+                    barBorderRadius: 5,
+                }
             }
         }
-    }],
-    series: [
-		{
-        type: 'bar',
-        data: [32, 25, 18, 16, 28, 27, 19],
-        barWidth:'35%', //柱子宽度
-       // barGap: 1, //柱子之间间距
-        itemStyle: {
-            normal: {
-                color:'#2f89cf',
-                opacity: 1,
-				barBorderRadius: 5,
-            }
-        }
-    }
-	]
-};
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-        window.addEventListener("resize",function(){
-            myChart.resize();
-        });
+        ]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+    window.addEventListener("resize",function(){
+        myChart.resize();
+    });
 }
 function echarts_5() {
         // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('echart5'));
 
     option = {
-  //  backgroundColor: '#00265f',
-    tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-            type: 'shadow'
-        }
-    },
-    title: {
-        text: '违法线索分类统计',
-        top:0,
-        // backgroundColor: 'rgba(255, 255,255,1)'
-        textStyle:{
-            ...titleChartStyle
-        }
-    },
-    grid: {
-        left: '0%',
-		top:'40px',
-        right: '0%',
-        bottom: '0',
-       containLabel: true
-    },
-    xAxis: [{
-        type: 'category',
-      	// data: ['浙江', '上海', '江苏', '广东', '北京', '深圳', '安徽', '四川'],
-        data:[
-          '大数据杀熟 ',
-          '价格欺诈',
-          '明码标价',
-          '哄抬物价',
-          '串通价格'
-        ],
-        axisLine: {
-            show: true,
-         lineStyle: {
-                color: "rgba(255,255,255,.1)",
-                width: 1,
-                type: "solid"
-            },
+    //  backgroundColor: '#00265f',
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
         },
-		
-        axisTick: {
-            show: false,
+        title: {
+            text: '违法线索分类统计',
+            top:0,
+            // backgroundColor: 'rgba(255, 255,255,1)'
+            textStyle:{
+                ...titleChartStyle
+            }
         },
-		axisLabel:  {
-                interval: 0,
-               // rotate:50,
+        grid: {
+            left: '0%',
+            top:'40px',
+            right: '0%',
+            bottom: '0',
+        containLabel: true
+        },
+        xAxis: [{
+            type: 'category',
+            // data: ['浙江', '上海', '江苏', '广东', '北京', '深圳', '安徽', '四川'],
+            data:[
+            '大数据杀熟 ',
+            '价格欺诈',
+            '明码标价',
+            '哄抬物价',
+            '串通价格'
+            ],
+            axisLine: {
                 show: true,
-                splitNumber: 15,
+            lineStyle: {
+                    color: "rgba(255,255,255,.1)",
+                    width: 1,
+                    type: "solid"
+                },
+            },
+            
+            axisTick: {
+                show: false,
+            },
+            axisLabel:  {
+                    interval: 0,
+                // rotate:50,
+                    show: true,
+                    splitNumber: 15,
+                    textStyle: {
+                        color: "rgba(255,255,255,.6)",
+                        fontSize: '12',
+                    },
+                },
+        }],
+        yAxis: [{
+            type: 'value',
+            axisLabel: {
+            //formatter: '{value} %'
+                show:true,
                 textStyle: {
- 					color: "rgba(255,255,255,.6)",
-                    fontSize: '12',
+                        color: "rgba(255,255,255,.6)",
+                        fontSize: '12',
+                    },
+            },
+            axisTick: {
+                show: false,
+            },
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: "rgba(255,255,255,.1	)",
+                    width: 1,
+                    type: "solid"
                 },
             },
-    }],
-    yAxis: [{
-        type: 'value',
-        axisLabel: {
-           //formatter: '{value} %'
-			show:true,
-			 textStyle: {
- 					color: "rgba(255,255,255,.6)",
-                    fontSize: '12',
-                },
-        },
-        axisTick: {
-            show: false,
-        },
-        axisLine: {
-            show: true,
+            splitLine: {
+                lineStyle: {
+                color: "rgba(255,255,255,.1)",
+                }
+            }
+        }],
+        series: [{
+            type: 'bar',
+            data: [2, 3, 3, 9, 15, 12, 6, 4, 6, 7, 4, 10],
+            barWidth:'35%', //柱子宽度
             lineStyle: {
-                color: "rgba(255,255,255,.1	)",
-                width: 1,
-                type: "solid"
+                
+                normal: {
+                    color: '#0184d5',
+                    width: 2
+                }
             },
-        },
-        splitLine: {
-            lineStyle: {
-               color: "rgba(255,255,255,.1)",
+        // barGap: 1, //柱子之间间距
+            itemStyle: {
+                normal: {
+                    color:'#2f89cf',
+                    opacity: 1,
+                    barBorderRadius: 5,
+                }
             }
         }
-    }],
-    series: [{
-        type: 'bar',
-        data: [2, 3, 3, 9, 15, 12, 6, 4, 6, 7, 4, 10],
-        barWidth:'35%', //柱子宽度
-        lineStyle: {
-			
-            normal: {
-				color: '#0184d5',
-                width: 2
-            }
-        },
-       // barGap: 1, //柱子之间间距
-        itemStyle: {
-            normal: {
-                color:'#2f89cf',
-                opacity: 1,
-				barBorderRadius: 5,
-            }
-        }
-    }
-	]
-};
+        ]
+    };
       
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-        window.addEventListener("resize",function(){
-            myChart.resize();
-        });
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+    window.addEventListener("resize",function(){
+        myChart.resize();
+    });
 }
 })
 
