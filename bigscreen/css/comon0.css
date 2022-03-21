@@ -5,6 +5,9 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box}
 *,body{padding:0px;	margin:0px;color: #222;font-family: "微软雅黑";}
+body{
+	overflow-y: hidden;
+}
 @font-face{font-family:electronicFont;src:url(../font/DS-DIGIT.TTF)}
 body{ background:#000d4a url(../images/bg.jpg) center top; background-size:cover;color:#666;font-size: .1rem;}
 li{ list-style-type:none;}
@@ -242,7 +245,10 @@ to {transform: rotate(-359deg);}
 	  display: flex;
 	  justify-content: flex-start;
 	  flex-wrap: wrap;
-	  padding-top: 8px;
+	  padding-top: .15rem;
+  }
+  .plat-no-rule{
+	  height: 0.7rem;
   }
   .icon-list-li, .no-rule-li{
 	/* text-align: center; */
@@ -288,6 +294,7 @@ to {transform: rotate(-359deg);}
 	grid-template-columns: 48% 48%;
 	column-gap:4%;
 	row-gap: 12px;
+	height: 2rem;
 	  /* display: flex;
 	  justify-content: center;
 	  align-items: center; */
@@ -354,5 +361,47 @@ to {transform: rotate(-359deg);}
   }
   .ul-over-height-2{
 	  height:calc(3rem - 58px);
+  }
+  .all-nav-echarts{
+	  height: 2.5rem;
+  }
+  :root {
+	--left-height-one: 1.6rem + 2.5rem + 0.6rem;
+	--head-height:1.05rem + 0.1rem;
+	--gap-len:0.3rem;
+	--height-total-0:8.55rem;
+	--height-total-1:6.8rem;
+  }
+  .box-left-class{
+	  height: calc(var(--left-height-one));
+  }
+  .box-right-class{
+	  /* height: ; */
+  }
+  .boxall-bottom{
+	  padding-bottom: .2rem;
+  }
+  .plat-icon-list{
+	  height: 1.60rem;
+	  overflow-y: scroll;
+  }
+  .all-nav-echarts-small{
+	  height: 2.2rem;
+  }
+  .box-all-left-last{
+	  padding-bottom: 0.2rem;
+  }
+  .box-all-left-second{
+	padding-bottom: 0.2rem;
+	height: calc(100% - 8.75rem);
+  }
+  .ul-server-height{
+	  height: 1rem;
+  }
+  .nolegal-height{
+	  height: 1.94rem;
+  }
+  .plat-icon-list.platIconsList{
+	  padding-top: 0;
   }
   /* 重点监测商品 end */

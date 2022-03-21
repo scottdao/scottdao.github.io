@@ -57,7 +57,7 @@ var t = null;
 <div class="mainbox">
   <ul class="clearfix">
     <li>
-      <div class="boxall" style="height: 3.6rem">
+      <div class="boxall box-left-class" >
         <div class="alltitle">
           <span class="title-text platTitle">
             <!-- 监测平台总数 -->
@@ -65,14 +65,14 @@ var t = null;
           <span class="font-color title-num platNum">137</span>
         </div>
         <!-- <div class="allnav" id="echart1"></div> -->
-        <div class="allnav platNums ul-over-auto ul-over-height-36 clear-scrollbar" id="platNums">
-          <ul class="plat-icon-list">
+        <div class="platNums" id="platNums">
+          <ul class="plat-icon-list platIconsList clear-scrollbar">
           </ul>
-          <div class='plat-charts allnav' id='classFiled'>13123</div> 
+          <div class='plat-charts all-nav-echarts' id='classFiled'></div> 
         </div>
         <div class="boxfoot"></div>
       </div>
-      <div class="boxall" style="height: 2.8rem">
+      <div class="boxall box-all-left-second">
         <div class="alltitle">
           <span class="title-text checkServerTitle">
               <!-- 重点监测商品/服务总数 -->
@@ -81,27 +81,22 @@ var t = null;
           <span class="font-color title-num-small server-addNums" >昨日+72</span>
         </div>
         <!-- <div class="allnav" id="echart2"></div> -->
-        <div class="allnav ul-over-auto clear-scrollbar">
+        <div class="ul-over-auto ul-server-height clear-scrollbar">
           <!-- <ul class="ul-over-auto-28 check-ul">
           </ul> -->
-          <ul class="ul-li-nolegal check-ul ul-over-auto-28 clear-scrollbar">
+          <ul class="ul-li-nolegal check-ul">
           </ul>
         </div>
         <div class="boxfoot"></div>
       </div>
-      <div class="boxall" style="height: 3.2rem">
+      <div class="boxall box-all-left-last">
         <div class="alltitle">
             <span class="title-text">
               总数据条数
             </span>
             <span class="font-color title-num totalNum">137151256</span>
         </div>
-        <div class="allnav" id="echart1"></div>
-        <!-- <div style="height:100%; width: 100%;">
-		  	<div class="sy" id="fb1"></div>
-				<div class="sy" id="fb2"></div>
-				<div class="sy" id="fb3"></div>
-		  </div> -->
+        <div class="all-nav-echarts-small" id="echart1"></div>
         <div class="boxfoot"></div>
       </div>
     </li>
@@ -134,7 +129,7 @@ var t = null;
         <div class="map3"><img src="picture/map.png"></div>
         <div class="map4" id="map_1"></div>
       </div>
-      <div class="boxall" style="height: 2.8rem;bottom:-82px;position: absolute;width: 100%;">
+      <div class="boxall" style="height: 2.8rem;bottom:-0.4rem;position: absolute;width: 100%;margin-bottom: 0;">
         <div class="alltitle">
             <span class="title-text">
               <!-- 过去7天 四川消费者热门应用 -->
@@ -146,7 +141,7 @@ var t = null;
       </div>
     </li>
     <li>
-        <div class="boxall" style="height:3.4rem">
+      <div class="boxall boxall-bottom" >
           <div class="alltitle">
             <span class="title-text ">
                 疑似价格违法线索
@@ -155,10 +150,10 @@ var t = null;
             <span class="font-color title-num-small" >昨日+1</span>
           </div>
           <!-- <div class="allnav" id="echart4"></div> -->
-          <div class="allnav" id="echart5"></div>
+          <div class="all-nav-echarts" id="echart5"></div>
           <div class="boxfoot"></div>
       </div>
-      <div class="boxall" style="height: 3.2rem">
+      <div class="boxall boxall-bottom" >
           <div class="alltitle">
             <span class="title-text leageTitle">
               疑似价格违法平台
@@ -171,34 +166,15 @@ var t = null;
             </span>
           </div>
           <!-- <div class="allnav" id="echart5"></div> -->
-          <div class="allnav over-flow-scroll">
+          <div class=" over-flow-scroll">
             <ul class="plat-no-rule noRuleIcon">
-              <!-- <li class="no-rule-li">
-                <div>
-                  <svg class="icon" aria-hidden="true">
-                      <use xlink:href="#icondidichuhang"></use>
-                  </svg>
-                </div>
-                <div class="font-color-withe">
-                   滴滴出行
-                </div>
-              </li> -->
             </ul>
-            <ul class="no-rule-ul no-rule-ul-top noRuleTitle">
-              <!-- <li class="no-rule-icon-li ">
-                <div class="font-color-withe check-li-frame padding-frame" >研判标题</div>
-              </li> -->
-              <!-- <li  class="no-rule-icon-li ">
-                <div class="font-color-withe check-li-frame padding-frame" >研判标题</div>
-              </li>
-              <li  class="no-rule-icon-li ">
-                <div class="font-color-withe check-li-frame padding-frame" >研判标题</div>
-              </li> -->
+            <ul class="no-rule-ul  noRuleTitle">
             </ul>
           </div>
           <div class="boxfoot"></div>
       </div>
-      <div class="boxall" style="height: 3rem">
+      <div class="boxall boxall-bottom">
         <div class="alltitle">
           <span class="title-text noLegalTitle">
             <!-- 暂未发现价格违法平台 -->
@@ -206,7 +182,7 @@ var t = null;
           <span class="font-color-red title-num noLegalTotal">12</span>
           <span class="font-color-red title-num-small noLegalTimer" >（过去1月）</span>
         </div>
-        <ul class="ul-li-nolegal  noLegalList ul-over-auto ul-over-height-2 clear-scrollbar">
+        <ul class="ul-li-nolegal nolegal-height  noLegalList ul-over-auto clear-scrollbar">
         </ul>
         <!-- <div class="allnav" id="echart6"></div> -->
         <div class="boxfoot"></div>

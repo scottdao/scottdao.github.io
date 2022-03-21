@@ -148,9 +148,8 @@ function platCharts(){
     });
 }
 function setIconsAnimation(list){
-    $('.plat-icon-list').children().fadeOut(1000).remove()
     list.forEach(item=>{
-        $('.plat-icon-list').fadeIn(1000).append($(`
+        $('.plat-icon-list').append($(`
             <li class="icon-list-li ani-${item.index}">
                 <div class='list-li-img' title='${item.name}'>
                 ${
@@ -161,37 +160,14 @@ function setIconsAnimation(list){
                 </div>
             
             </li>
-        `).fadeIn(1000))
+        `))
     })
-}
-let timer1 = null
-if(document.hide){
-    clearInterval(timer1)
 }
 function platIcons(){
     window.fetch('../json/icon.json').then(res=>res.json()).then(response=>{
         let totalList = response.icons
-        let len = totalList.length;
-        let countEnd = 48
-        let countStart = 0
-        let list = totalList.slice(countStart, countEnd).map((item, index)=>({...item, index:countStart+index}))
-       
-        setIconsAnimation(list)
-        $('.plat-icon-list').slideDown(1000)
-        if(totalList.length>48){
-            clearInterval(timer1)
-            timer1 =  setInterval(() => {
-                countStart = countEnd
-                countEnd += 48 
-                list = totalList.slice(countStart, countEnd)
-                setIconsAnimation(list)
-                if(countEnd>len){
-                    countStart = 0
-                    countEnd = 48
-                    // clearInterval(timer1)
-                }
-            }, 5000);
-        }
+          setIconsAnimation(totalList)
+          requestAnimationFrame((timestamp)=>setScrollAni('platIconsList', timestamp))
         $('.platNum').html(response.icons.length)
         $('.platTitle').html(response.title)
     })
@@ -425,23 +401,20 @@ function interval(callback, time){
 }
 let timer2 = null
 // 暂未发现价格违法平台
-function setLegalAni(){
-    const titleEl =  $('.noLegalList')
-    // setInterval(())
+function setScrollAni(className="noLegalList"){
+    const titleEl =  $(`.${className}`)
     const clientHeight =  titleEl.height()
-    // console.log(titleEl, 99877)
-    // const parentNode = titleEl.parent()
     let top =   titleEl[0].scrollTop
-    const srollHeight = titleEl[0].scrollHeight
-    if(top+clientHeight >=srollHeight){
+    const scrollHeight = titleEl[0].scrollHeight
+    if(top+clientHeight >=scrollHeight){
         titleEl[0].scrollTop = 0
         clearTimeout(timer2)
         timer2 =  setTimeout(()=>{
-            setLegalAni()
+            setScrollAni(className)
         }, 100)
     }else{
         titleEl[0].scrollTop++
-        requestAnimationFrame(setLegalAni)
+        requestAnimationFrame((timestamp)=>setScrollAni(className, timestamp))
     }
 //   console.log(top)
 }
@@ -463,12 +436,10 @@ function noLegal(){
             //                 </svg>`
             //             }
             //         </div>
-                   
             //     </li>
             // `)
         })
-        requestAnimationFrame(setLegalAni)
-       
+        requestAnimationFrame((timestamp)=>setScrollAni('noLegalList', timestamp))
         $('.noLegalTitle').html(response.title)
         $('.noLegalTotal').html(response.total)
         $('.noLegalTimer').html(`（过去${response.timer}月）`)
@@ -609,7 +580,8 @@ function echarts_5() {
             '价格欺诈',
             '明码标价',
             '哄抬物价',
-            '串通价格'
+            '串通价格',
+            "其他原因"
             ],
             axisLine: {
                 show: true,
@@ -663,7 +635,7 @@ function echarts_5() {
         }],
         series: [{
             type: 'bar',
-            data: [2, 3, 3, 9, 15, 12, 6, 4, 6, 7, 4, 10],
+            data: [51, 19, 6, 7, 5, 17],
             barWidth:'35%', //柱子宽度
             lineStyle: {
                 
