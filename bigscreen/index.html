@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no"> 
 <title>index</title>
 <script type="text/javascript" src="js/jquery.js"></script>
 <link rel="stylesheet" href="css/comon0.css">
@@ -19,9 +20,9 @@ $(document).ready(function(){
 });
 	});
 	</script>
-	<script type="text/javascript" src="js/echarts.min.js"></script> 
-	<script language="JavaScript" src="js/js.js"></script> 
-<body>
+  <script type="text/javascript" src="js/echarts.min.js"></script> 
+	<script language="JavaScript" src="js/js.js"></script>
+  <body>
 <div class="canvas" style="opacity: .2">
 	<iframe frameborder="0" src="js/index.html" style="width: 100%; height: 100%"></iframe>
 	</div>
@@ -82,9 +83,9 @@ var t = null;
         </div>
         <!-- <div class="allnav" id="echart2"></div> -->
         <div class="ul-over-auto ul-server-height clear-scrollbar">
-          <!-- <ul class="ul-over-auto-28 check-ul">
+          <!-- <ul class="ul-li-nolegal check-ul">
           </ul> -->
-          <ul class="ul-li-nolegal check-ul">
+          <ul class="no-rule-ul   check-ul ul-over-auto clear-scrollbar">
           </ul>
         </div>
         <div class="boxfoot"></div>
@@ -92,7 +93,7 @@ var t = null;
       <div class="boxall box-all-left-last">
         <div class="alltitle">
             <span class="title-text">
-              总数据条数
+              已巡检商品或服务次数
             </span>
             <span class="font-color title-num totalNum">137151256</span>
         </div>
@@ -105,7 +106,7 @@ var t = null;
         <div class="barbox">
           <ul class="clearfix">
             <li class="pulll_left counter">356672</li>
-            <li class="pulll_left counter">3912410</li>
+            <li class="pulll_left counter">137</li>
           </ul>
         </div>
         <div class="barbox2">
@@ -127,7 +128,11 @@ var t = null;
         <div class="map1"><img src="picture/lbx.png"></div>
         <div class="map2"><img src="picture/jt.png"></div>
         <div class="map3"><img src="picture/map.png"></div>
-        <div class="map4" id="map_1"></div>
+        <!-- <div class="map4" id="map_1"></div> -->
+        <div class="map4" id="container"></div>
+        <div class="maploading" style="display: none;">
+          <div class="loadbox"> <img src="picture/loading.gif"> 地图加载中... </div>
+        </div>
       </div>
       <div class="boxall" style="height: 2.8rem;bottom:-0.4rem;position: absolute;width: 100%;margin-bottom: 0;">
         <div class="alltitle">
@@ -167,7 +172,7 @@ var t = null;
           </div>
           <!-- <div class="allnav" id="echart5"></div> -->
           <div class=" over-flow-scroll">
-            <ul class="plat-no-rule noRuleIcon">
+            <ul class="plat-no-rule noRuleIcon" style="flex-wrap: nowrap;">
             </ul>
             <ul class="no-rule-ul  noRuleTitle">
             </ul>
@@ -182,17 +187,96 @@ var t = null;
           <span class="font-color-red title-num noLegalTotal">12</span>
           <span class="font-color-red title-num-small noLegalTimer" >（过去1月）</span>
         </div>
-        <ul class="ul-li-nolegal nolegal-height  noLegalList ul-over-auto clear-scrollbar">
+        <!-- <ul class="ul-li-nolegal nolegal-height  noLegalList ul-over-auto clear-scrollbar">
+        </ul> -->
+        <ul class="no-rule-ul nolegal-height  noLegalList ul-over-auto clear-scrollbar">
         </ul>
-        <!-- <div class="allnav" id="echart6"></div> -->
         <div class="boxfoot"></div>
       </div>
     </li>
   </ul>
 </div>
 <div class="back"></div>
-
-
+<script type="text/javascript">
+  window._AMapSecurityConfig = {
+          securityJsCode:'b389b56d89a7bf7613b0c9b0f6bf2305',
+  }
+</script>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=97994bbe96072295fac18fec70ee3bc1&plugin=AMap.DistrictSearch&plugin=Map3D,AMap.DistrictLayer,AMap.Scale,AMap.ToolBar"></script>
+<script>
+  const  map = new AMap.Map('container', {
+    resizeEnable: true,
+      center: [116.418261, 39.921984],
+      zoom:12,
+      viewMode:'3D',
+      // resizeEnable: true,
+      mapStyle:"amap://styles/darkblue"
+  });
+    var district = null;
+    var polygons=[];
+    function drawBounds(value) {
+      return new Promise((resolve)=>{
+           //加载行政区划插件
+        if(!district){
+            //实例化DistrictSearch
+            var opts = {
+                subdistrict: 0,   //获取边界不需要返回下级行政区
+                extensions: 'all',  //返回行政区边界坐标组等具体信息
+                level: 'district'  //查询行政级别为 市
+            };
+            district = new AMap.DistrictSearch(opts);
+        }
+        //行政区查询
+        district.setLevel('province')
+        district.search(value, function(status, result) {
+            map.remove(polygons)//清除上次结果
+            polygons = [];
+            var bounds = result.districtList[0].boundaries;
+            if (bounds) {
+                for (var i = 0, l = bounds.length; i < l; i++) {
+                    //生成行政区划polygon
+                    var polygon = new AMap.Polygon({
+                        strokeWeight: 1,
+                        path: bounds[i],
+                        fillOpacity: 0.4,
+                        fillColor: '#80d8ff',
+                        strokeColor: '#0091ea'
+                    });
+                    polygons.push(polygon);
+                }
+            }
+            map.add(polygons)
+            map.setFitView(polygons);//视口自适应
+            resolve()
+        });
+      })
+    }
+    drawBounds('四川');
+    let flag = false
+    // 切换地区
+    $('#pro-btn').click(function(){
+        // console.log($(this))
+    // flag = false
+    $('.maploading').css({display:'block'})
+    if(flag){
+       
+        drawBounds('四川').then(res=>{
+          $('.maploading').css({display:'none'})
+          flag = false
+          $(this).html('四川省：21市州')
+        })
+       
+    }else{
+       
+        drawBounds('中国').then(res=>{
+          $('.maploading').css({display:'none'})
+          flag = true
+          $(this).html('全国')
+        });
+       
+    }
+})
+</script>
 <script type="text/javascript" src="js/china.js"></script> 
 <script type="text/javascript" src="js/area_echarts.js"></script> 
 <script src="./common/icon-font.js"></script>

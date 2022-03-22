@@ -1,6 +1,7 @@
 ﻿
 $(function () {
-
+ // 字体长度
+let len = 10
 const titleChartStyle = {
     color:'#fff',
     fontWeight:400,
@@ -9,19 +10,7 @@ const titleChartStyle = {
 echarts_1();
 echarts_5();
 platIcons()
-let flag = false
-// 切换地区
-$('#pro-btn').click(function(){
-    // console.log($(this))
-    // flag = false
-    if(flag){
-        flag = false
-        $(this).html('四川省：21市州')
-    }else{
-        flag = true
-        $(this).html('全国')
-    }
-})
+
 platCharts()
 function platCharts(){
         var myChart = echarts.init(document.getElementById('classFiled'));
@@ -163,11 +152,55 @@ function setIconsAnimation(list){
         `))
     })
 }
+
+
+function setScrollAni(className="noLegalList", speed = 100){
+    const titleEl =  $(`.${className}`)
+    const clientHeight =  titleEl.height()
+    let top =   titleEl[0].scrollTop
+    const scrollHeight = titleEl[0].scrollHeight
+    let timer2 = null
+    const longDeepFn = ()=>{
+        clearInterVal(timer2)
+        timer2 =  setInterval(()=>{
+            titleEl[0].scrollTop++
+        }, speed)
+    }
+    if(top+clientHeight >=scrollHeight){
+        clearTimeout(timer2)
+        timer2 =  setTimeout(()=>{
+            titleEl[0].scrollTop = 0
+            setScrollAni(className, speed)
+            callback(function(){
+                return timer2
+            }) 
+        }, 1000)
+    }else{
+        
+        longDeepFn()
+        // clearTimeout(timer2)
+        // timer2 =  setTimeout(()=>{
+        //     setScrollAni(className, speed, callback)
+        // }, speed)
+        // requestAnimationFrame((timestamp)=>setScrollAni(className, timestamp))
+    }
+    $(`.${className}`).mouseenter(()=>{
+        // console.log(123)
+        clearInterVal(timer2)
+    }).mouseleave(()=>{
+        longDeepFn()
+    })
+//   console.log(top)
+}
 function platIcons(){
     window.fetch('../json/icon.json').then(res=>res.json()).then(response=>{
         let totalList = response.icons
           setIconsAnimation(totalList)
-          requestAnimationFrame((timestamp)=>setScrollAni('platIconsList', timestamp))
+          let timer = null
+          setScrollAni('platIconsList')
+         
+        //   .on('mouselev')
+        //   requestAnimationFrame((timestamp)=>setScrollAni('platIconsList', timestamp))
         $('.platNum').html(response.icons.length)
         $('.platTitle').html(response.title)
     })
@@ -176,7 +209,7 @@ function platIcons(){
 let urlPath = 'http://jrdongcha-test.idatafun.com/jrdongcha/api/research/researchList'
 let params = {
     pageNo: 1,
-    pageSize: 3,
+    pageSize: 10,
     type: "hot",
     userId: 0
 }
@@ -194,11 +227,14 @@ const requestList = (pageNo, callback)=>{
     .then(res=>{
         // console.log(res, 998766)
         $('.server-num').html(res.data.total)
-        $('.check-ul').children().fadeOut(1000).remove()
+        $('.check-ul').children().remove()
         res.data.records && res.data.records.forEach(item=>{
-            $('.check-ul').fadeIn(1000).append($(`<li class="no-rule-icon-li">
-                    <div class="font-color-withe check-li-frame padding-frame" title='${item.researchName}'>${item.researchName}</div>
-                </li>`).fadeIn(1000)
+            $('.check-ul').append($(
+                `<li class="no-rule-icon-li ">
+                <div class="font-color-withe check-li-frame padding-frame" title='${item.researchName}'>${item.researchName.length>len?`${item.researchName.slice(0, len)}...`:item.researchName}</div>
+              </li>
+            `
+                )
             )
         })
         callback(res.data.records)
@@ -222,8 +258,8 @@ function checkListFn(){
         requestList(pageNo, (data)=>((!data||!data.length)?clearInterval(timer3):""))
         timer3 && clearInterval(timer3);
         timer3 = setInterval(()=>{
-            pageNo++
-            requestList(pageNo, fn)
+            // pageNo++
+            // requestList(pageNo, fn)
         }, 5000)
         $('.checkServerTitle').html(response.title)
         
@@ -356,7 +392,6 @@ function HotShops(){
 
 // 疑似价格违法平台
 legalPlat()
-
 function legalPlat(){
     window.fetch('../json/Illegal.json').then(res=>res.json()).then(response=>{
         response.icons.forEach(item=>{
@@ -399,47 +434,26 @@ function interval(callback, time){
       }, time)
       return timer
 }
-let timer2 = null
+
 // 暂未发现价格违法平台
-function setScrollAni(className="noLegalList"){
-    const titleEl =  $(`.${className}`)
-    const clientHeight =  titleEl.height()
-    let top =   titleEl[0].scrollTop
-    const scrollHeight = titleEl[0].scrollHeight
-    if(top+clientHeight >=scrollHeight){
-        titleEl[0].scrollTop = 0
-        clearTimeout(timer2)
-        timer2 =  setTimeout(()=>{
-            setScrollAni(className)
-        }, 100)
-    }else{
-        titleEl[0].scrollTop++
-        requestAnimationFrame((timestamp)=>setScrollAni(className, timestamp))
-    }
-//   console.log(top)
-}
 noLegal()
 function noLegal(){
     window.fetch('../json/noLegal.json').then(res=>res.json()).then(response=>{
+        
         response.titleArr.forEach(item=>{
-            $('.noLegalList').append(`
-            <li class="no-rule-icon-li ">
-                <div class="font-color-withe check-li-frame padding-frame" title='${item}'>${item}</div>
+            $('.noLegalList').append(
+                `<li class="no-rule-icon-li ">
+                <div class="font-color-withe check-li-frame padding-frame" title='${item}'>${item.length>len?`${item.slice(0, len)}...`:item}</div>
               </li>
-            `)
-            // $('.noLegalList').append(`
-            //     <li class="no-rule-li">
-            //         <div class='list-li-img' title='${item.name}'>
-            //             ${
-            //                 item.type=== 'img'?`<img src='../icons/${item.icon}.png' />`:`<svg class="icon" aria-hidden="true">
-            //                     <use xlink:href="#${item.icon}"></use>
-            //                 </svg>`
-            //             }
-            //         </div>
-            //     </li>
-            // `)
+            `
+            )
+             //     `
+            // <li class="no-rule-icon-li ">
+            //     <div class="font-color-withe check-li-frame padding-frame" title='${item}'>${item}</div>
+            //   </li>
+            // `
         })
-        requestAnimationFrame((timestamp)=>setScrollAni('noLegalList', timestamp))
+        // requestAnimationFrame((timestamp)=>setScrollAni('noLegalList', timestamp))
         $('.noLegalTitle').html(response.title)
         $('.noLegalTotal').html(response.total)
         $('.noLegalTimer').html(`（过去${response.timer}月）`)
@@ -591,7 +605,6 @@ function echarts_5() {
                     type: "solid"
                 },
             },
-            
             axisTick: {
                 show: false,
             },
@@ -638,7 +651,6 @@ function echarts_5() {
             data: [51, 19, 6, 7, 5, 17],
             barWidth:'35%', //柱子宽度
             lineStyle: {
-                
                 normal: {
                     color: '#0184d5',
                     width: 2
@@ -655,7 +667,6 @@ function echarts_5() {
         }
         ]
     };
-      
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
     window.addEventListener("resize",function(){
@@ -663,4 +674,3 @@ function echarts_5() {
     });
 }
 })
-
