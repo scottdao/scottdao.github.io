@@ -85,7 +85,7 @@ var t = null;
         <div class="ul-over-auto ul-server-height clear-scrollbar">
           <!-- <ul class="ul-li-nolegal check-ul">
           </ul> -->
-          <ul class="no-rule-ul   check-ul ul-over-auto clear-scrollbar">
+          <ul class="no-rule-ul check-ul ul-over-auto clear-scrollbar">
           </ul>
         </div>
         <div class="boxfoot"></div>
@@ -128,8 +128,8 @@ var t = null;
         <div class="map1"><img src="picture/lbx.png"></div>
         <div class="map2"><img src="picture/jt.png"></div>
         <div class="map3"><img src="picture/map.png"></div>
-        <!-- <div class="map4" id="map_1"></div> -->
-        <div class="map4" id="container"></div>
+        <div class="map4" id="map_1"></div>
+        <!-- <div class="map4" id="container"></div> -->
         <div class="maploading" style="display: none;">
           <div class="loadbox"> <img src="picture/loading.gif"> 地图加载中... </div>
         </div>
@@ -203,6 +203,7 @@ var t = null;
   }
 </script>
 <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=97994bbe96072295fac18fec70ee3bc1&plugin=AMap.DistrictSearch&plugin=Map3D,AMap.DistrictLayer,AMap.Scale,AMap.ToolBar"></script>
+<script type="text/javascript" src="js/area_echarts.js"></script> 
 <script>
   const  map = new AMap.Map('container', {
     resizeEnable: true,
@@ -251,34 +252,29 @@ var t = null;
         });
       })
     }
-    drawBounds('四川');
+    let timer = null
     let flag = false
     // 切换地区
     $('#pro-btn').click(function(){
-        // console.log($(this))
-    // flag = false
-    $('.maploading').css({display:'block'})
-    if(flag){
-       
-        drawBounds('四川').then(res=>{
+      $('.maploading').css({display:'block'})
+      clearTimeout(timer)
+      if(flag){
+        timer = setTimeout(()=>{
           $('.maploading').css({display:'none'})
           flag = false
           $(this).html('四川省：21市州')
-        })
-       
-    }else{
-       
-        drawBounds('中国').then(res=>{
-          $('.maploading').css({display:'none'})
-          flag = true
-          $(this).html('全国')
-        });
-       
-    }
-})
+        }, 1000)
+      }else{
+        timer = setTimeout(()=>{
+            $('.maploading').css({display:'none'})
+            flag = true
+            $(this).html('全国')
+        }, 1000)
+      }
+    })
 </script>
 <script type="text/javascript" src="js/china.js"></script> 
-<script type="text/javascript" src="js/area_echarts.js"></script> 
+
 <script src="./common/icon-font.js"></script>
 </body>
 </html>

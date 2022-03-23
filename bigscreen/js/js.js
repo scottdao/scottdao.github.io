@@ -164,25 +164,16 @@ function setScrollAni(className="noLegalList", speed = 100){
         clearInterVal(timer2)
         timer2 =  setInterval(()=>{
             titleEl[0].scrollTop++
+            if(titleEl[0].scrollTop+clientHeight>=scrollHeight){
+                titleEl[0].scrollTop = 0
+            }
         }, speed)
     }
+    console.log(top, clientHeight,scrollHeight,'--=--')
     if(top+clientHeight >=scrollHeight){
-        clearTimeout(timer2)
-        timer2 =  setTimeout(()=>{
-            titleEl[0].scrollTop = 0
-            setScrollAni(className, speed)
-            callback(function(){
-                return timer2
-            }) 
-        }, 1000)
+        titleEl[0].scrollTop = 0
     }else{
-        
         longDeepFn()
-        // clearTimeout(timer2)
-        // timer2 =  setTimeout(()=>{
-        //     setScrollAni(className, speed, callback)
-        // }, speed)
-        // requestAnimationFrame((timestamp)=>setScrollAni(className, timestamp))
     }
     $(`.${className}`).mouseenter(()=>{
         // console.log(123)
@@ -213,7 +204,9 @@ let params = {
     type: "hot",
     userId: 0
 }
+let  pageNo = 1;
 const requestList = (pageNo, callback)=>{
+  return new Promise(resolve=>{
     window.fetch(urlPath, {
         method:'post',
         body:JSON.stringify({...params, pageNo}),
@@ -226,6 +219,11 @@ const requestList = (pageNo, callback)=>{
     })
     .then(res=>{
         // console.log(res, 998766)
+        if(!res.data.records || !res.data.records.length){
+            // pageNo = 1;
+            return resolve(res.data.records)
+        }
+        // console.log(res, 998766)
         $('.server-num').html(res.data.total)
         $('.check-ul').children().remove()
         res.data.records && res.data.records.forEach(item=>{
@@ -237,32 +235,64 @@ const requestList = (pageNo, callback)=>{
                 )
             )
         })
-        callback(res.data.records)
+        resolve(res.data.records)
+        callback && callback(res.data.records)
     })
+  })  
 }
 checkListFn()
+let timeout = null
 function checkListFn(){
    
+    function setScrollAni(className="ul-server-height", speed = 100){
+        const titleEl =  $(`.${className}`)
+        const clientHeight =  titleEl.height()
+        // let top =   titleEl[0].scrollTop
+        const scrollHeight = titleEl[0].scrollHeight
+        let timer2 = null
+        const longDeepFn = ()=>{
+            clearInterVal(timer2)
+            new Promise(resolve=>{
+                timer2 =  setInterval(()=>{
+                    // console.log(clientHeight,  titleEl[0].scrollTop, scrollHeight, '--00--', pageNo)
+                    if(titleEl[0].scrollTop+clientHeight>=scrollHeight){
+                        clearInterval(timer2)
+                        clearTimeout(timeout)
+                        timeout =  setTimeout(()=>{
+                            titleEl[0].scrollTop = 0;
+                            pageNo++;
+                            requestList(pageNo).then(res=>{
+                                if(!res){
+                                    pageNo = 0
+                                }
+                                longDeepFn()
+                            });
+                        }, 500)
+                    }else{
+                        titleEl[0].scrollTop++
+                    }
+                }, speed)
+            }).then(res=>{
+            })
+        }
+        if(top+clientHeight >=scrollHeight){
+            // titleEl[0].scrollTop = 0
+        }else{
+            longDeepFn()
+        }
+        $(`.${className}`).mouseenter(()=>{
+            clearInterVal(timer2)
+            clearTimeout(timeout)
+        }).mouseleave(()=>{
+            longDeepFn()
+        })
+    }
     window.fetch('../json/checkServer.json').then(res=>res.json()).then(response=>{
-    //    console.log(response, 99877)
-        // response.servers.forEach(item=>{
-        //     // console.log(item)
-        //     $('.check-ul').append(`<li class="no-rule-icon-li">
-        //             <div class="font-color-withe check-li-frame padding-frame" title='${item}'>${item}</div>
-        //         </li>`
-        //     )
-        // })
-        let pageSize = 10, pageNo = 1;
-        let timer3 = null
-        const fn = (data)=>((!data || !data.length)?(pageNo = 1):"")
-        requestList(pageNo, (data)=>((!data||!data.length)?clearInterval(timer3):""))
-        timer3 && clearInterval(timer3);
-        timer3 = setInterval(()=>{
-            // pageNo++
-            // requestList(pageNo, fn)
-        }, 5000)
+        // let timer3 = null
+        requestList(pageNo).then(res=>{
+            setScrollAni()
+        })
         $('.checkServerTitle').html(response.title)
-        
         $('.server-addNums').html(`昨日${response.addNum}`)
     })
 }
@@ -404,7 +434,6 @@ function legalPlat(){
                             </svg>`
                         }
                     </div>
-                   
                 </li>
             `)
         })
@@ -415,7 +444,6 @@ function legalPlat(){
               </li>
             `)
         })
-       
         $('.leageTitle').html(response.title)
         $('.legalTotal').html(response.total)
         $('.legalTimer').html(`（过去${response.timer}月）`)
@@ -439,7 +467,6 @@ function interval(callback, time){
 noLegal()
 function noLegal(){
     window.fetch('../json/noLegal.json').then(res=>res.json()).then(response=>{
-        
         response.titleArr.forEach(item=>{
             $('.noLegalList').append(
                 `<li class="no-rule-icon-li ">
@@ -447,13 +474,7 @@ function noLegal(){
               </li>
             `
             )
-             //     `
-            // <li class="no-rule-icon-li ">
-            //     <div class="font-color-withe check-li-frame padding-frame" title='${item}'>${item}</div>
-            //   </li>
-            // `
         })
-        // requestAnimationFrame((timestamp)=>setScrollAni('noLegalList', timestamp))
         $('.noLegalTitle').html(response.title)
         $('.noLegalTotal').html(response.total)
         $('.noLegalTimer').html(`（过去${response.timer}月）`)
